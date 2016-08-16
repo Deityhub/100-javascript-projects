@@ -16,10 +16,12 @@ I'll complete these 100 projects by Jan 1, 2017.
 
 1. I will do 100 small Javascript exercises.
 2. There's no time limit on how long an individual exercise can take.
-3. I'll post both failed attempts as well as the finished attempt. 
+3. I'll post both failed attempts as well as the finished attempt. I will also take notes about where I get stuck.
 4. I will ask for help when I need it—before I look at the answers/solution, if available.
 
 ## The Projects
+
+1. [fizzbuzz](exercises/081616-fizzbuzz.js) + [working solution with 🙈 🙉 🙊](https://jsfiddle.net/6s0a92ua/)
 
 ## Resources
 
