@@ -22,6 +22,8 @@ I'll complete these 100 projects by Jan 1, 2017.
 ## The Projects
 
 1. [fizzbuzz](exercises/081616-fizzbuzz.js) + [working solution with 🙈 🙉 🙊](https://jsfiddle.net/6s0a92ua/)
+2. [minimum](exercises/081616-minimum.js)
+3. [recursion](exercises/081816-recursion.js)
 
 ## Resources
 
@@ -31,3 +33,4 @@ I'll complete these 100 projects by Jan 1, 2017.
 * [Advent of Code](http://adventofcode.com/)
 * [mega project idea list](http://www.dreamincode.net/forums/topic/78802-martyr2s-mega-project-ideas-list/)
 * [women who code DC resources](https://github.com/womenwhocodedc/front-end-community/blob/master/study-guides/javascript_study_guide.md)
+* [eric elliott's essential javascript links](https://github.com/ericelliott/essential-javascript-links)
