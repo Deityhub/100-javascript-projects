@@ -24,6 +24,7 @@ I'll complete these 100 projects by Jan 1, 2017.
 1. [fizzbuzz](exercises/081616-fizzbuzz.js) + [working solution with 🙈 🙉 🙊](https://jsfiddle.net/6s0a92ua/)
 2. [minimum](exercises/081616-minimum.js)
 3. [recursion](exercises/081816-recursion.js)
+4. [character counting](exercises/081816-beancounting.js)
 
 ## Resources
 
