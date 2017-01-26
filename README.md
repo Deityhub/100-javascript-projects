@@ -22,10 +22,13 @@ Inspired by @jessabean's [100 Days of Javascript](https://github.com/jessabean/1
 2. [minimum](exercises/081616-minimum.js)
 3. [recursion](exercises/081816-recursion.js)
 4. [character counting](exercises/081816-beancounting.js)
+5. [reverse array](exercises/083016-reversearray.js)
+6. JS30 Exercise 1 - JS Drum Kit [draft](wesbos-js30/01 - JavaScript Drum Kit/draft-code.js) and [finished](wesbos-js30/01 - JavaScript Drum Kit/index-START.html)
 
 ## Resources
 
-* [Eloquent JavaScript](http://eloquentjavascript.net) and the exercises at [the EJ code editor](http://eloquentjavascript.net/code/)
+* [JavaScript for Web Designers by wilto](https://abookapart.com/products/javascript-for-web-designers) _read_
+* [Eloquent JavaScript](http://eloquentjavascript.net) and the exercises at [the EJ code editor](http://eloquentjavascript.net/code/) _currently reading_
 * [Khan Academy's Intro to Computer Programming](https://www.khanacademy.org/computing/computer-programming/programming)
 * [Google Creative Lab's Coder Projects](https://googlecreativelab.github.io/coder-projects/)
 * [Advent of Code](http://adventofcode.com/)
