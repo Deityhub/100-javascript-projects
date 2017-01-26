@@ -1,16 +1,13 @@
 # 100 JavaScript Projects
 
-Inspired by @jessabean's [100 Days of Javascript](https://github.com/jessabean/100-javascript-projects). 
+Inspired by @jessabean's [100 Days of Javascript](https://github.com/jessabean/100-javascript-projects).
 
 ## Goal
 
-1. Learn programming thinking via JavaScript. 
+1. Learn programming thinking via JavaScript.
 2. Learn enough React to build your own demo app for your work project.
 3. Learn Node; be able to build your own tooling for front-end architecture.
 
-## Due Date
-
-I'll complete these 100 projects by Jan 1, 2017.
 
 ## The Rules
 
