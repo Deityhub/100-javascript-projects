@@ -23,7 +23,7 @@ Inspired by @jessabean's [100 Days of Javascript](https://github.com/jessabean/1
 3. [recursion](exercises/081816-recursion.js)
 4. [character counting](exercises/081816-beancounting.js)
 5. [reverse array](exercises/083016-reversearray.js)
-6. JS30 Exercise 1 - JS Drum Kit [draft](wesbos-js30/01 - JavaScript Drum Kit/draft-code.js) and [finished](wesbos-js30/01 - JavaScript Drum Kit/index-START.html)
+6. JS30 Exercise 1 - JS Drum Kit [draft](exercises/wesbos-js30/01 - JavaScript Drum Kit/draft-code.js) and [finished](exercises/wesbos-js30/01 - JavaScript Drum Kit/index-START.html)
 
 ## Resources
 
