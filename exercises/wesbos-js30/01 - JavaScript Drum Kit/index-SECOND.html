@@ -87,7 +87,6 @@
             playSound(e.keyCode);
             key.classList.add('playing'); // adds playing transition class
         }
-        // else return; // don't need this b/c it's the end of the function anyway and we aren't returning anything in the negative state
 
         if (isRecording === true) {
             // console.log("you are recording");
@@ -95,8 +94,10 @@
             // now we can get the keycode that was pressed and record it into an array
             keysRecorded.push(e.keyCode);
             // console.log(keysRecorded);
-
-            // an array that contains objects (buttonpress --> time, which keycode was pressed)
+            // also capture the time of the keypress
+            // want to capture the time when record button is pressed (zero)
+            // and the elapsed time between that and key being pressed
+            //
         }
         else {
             // console.log("you are not recording");
@@ -108,6 +109,7 @@
         const audio = document.querySelector(`audio[data-key="${keyCode}"]`); // capture the audio element with the passed through keycode from the dom again
         audio.currentTime = 0;
         audio.play();
+        // console.log(keyCode);
     }
 
     // watch for a click on the record button and when it is clicked
@@ -138,15 +140,16 @@
         recordButton.classList.remove('is-active');
         isRecording = false;
         // TODO while isRecording is on, transform play button into a Stop button
-        console.log(keysRecorded);
-        // and do stuff with the array here
+        // console.log(keysRecorded); // OMG the array
+        // i am p sure that if you each over the array and call audio.play on them this is the "solution" that will freeze chrome lol not trying it sry lon for your entertainment
+        // console.log(keysRecorded);
+        keysRecorded.forEach(keyCode => playSound(keyCode));
+
+        // instead you need to schedule the playback of each key
+        // look at first item in the array, schedule it, play it, then remove (?) it and go to the next one - this also makes it easier in the future to cancel
+
+
     }
-
-    // playback - each over the array of what was recorded and call the audio.play on each of them - you don't need to check which key it was
-    // can't just foreach and call - it won't play the right time but will play them all right away
-    // instead you need to schedule the playback of each key
-    // look at first item in the array, schedule it, play it, then remove (?) it and go to the next one - this also makes it easier in the future to cancel
-
 
 
     // remove the transition css style
@@ -157,21 +160,9 @@
 
     // this bit is commented out b/c this is the listener for each key and then removing the transition css style on it, we will be listening in another way
     const keys = Array.from(document.querySelectorAll('.key'));
-        keys.forEach(key => {
-        key.addEventListener('transitionend', removeTransition)
-    });
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
 </script>
-
-<!--
-// Add a record button and play button - when page loads, play button is inactive because there's no recording to play - record button is active. when you hit the record button, it will record from then which buttons were pushed and the time they were pushed at. when you press play button (or press record again?) it will stop recording and then play back the result w/ correct timing. it should not freeze the browser (there is apparently a solution that will).
-
-* -add buttons to page w/ IDs - play has inactive-
-* -when record button is clicked, add active to play button-
-* -watch for a click on the record button-
-* -when clicked - notice that you're in a recording state-
-* record click and time - this is a different state than regular playing - -->
-
-
 
 
 </body>
