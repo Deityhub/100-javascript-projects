@@ -76,16 +76,19 @@
         const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
         // if (!audio) return; // reversed this below
         // console.log(audio);
+        // console.log(e.keyCode);
         // console.log(key);
         // check if audio matched, and if so, play it. else, function ends.
         if (audio) {
-            playSound(audio);
+            playSound(e.keyCode, audio);
             key.classList.add('playing'); // adds playing transition class
         }
         // else return; // don't need this b/c it's the end of the function anyway and we aren't returning anything in the negative state
     }
 
-    function playSound(audio) {
+    function playSound(keyCode, audio) {
+        // audio = audio element with keyCode
+        // const audio = 
         audio.currentTime = 0;
         audio.play();
     }
@@ -102,7 +105,11 @@
         // console.log(isRecording);
 
         // already listening on the window for all keydowns
-        // `const audio` line in playsound checks for the keydown matching the buttons that exist
+        // captureKeyPressed checks for the keydown matching the buttons that exist and plays the sound
+        // we want to get the audio keycode from each event through captureKeyPressed and record it into an array
+
+
+
         // an array that contains objects (buttonpress --> time, which keycode was pressed)
 
     }
