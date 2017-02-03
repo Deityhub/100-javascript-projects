@@ -74,16 +74,18 @@
     function captureKeyPressed(e) {
         const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
         const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-        if (!audio) return;
-        console.log(audio);
-        console.log(key);
-        audio.currentTime = 0;
-        audio.play();
+        // if (!audio) return; // reversed this below
+        // console.log(audio);
+        // console.log(key);
+        // check if audio matched, and if so, play it. else, function ends.
+        if (audio) {
+            playSound(audio);
+        }
+        // else return; // don't need this b/c it's the end of the function anyway and we aren't returning anything in the negative state
     }
 
 
-    function playSound(e) {
-        // these 3 lines into a separate function - call a function here that passes in what the key was and what the audio is
+    function playSound(audio) {
         // key.classList.add('playing'); // adds playing transition class
         audio.currentTime = 0;
         audio.play();
