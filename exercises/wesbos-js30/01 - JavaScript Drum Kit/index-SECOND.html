@@ -128,26 +128,25 @@
 
 
     var playButton = document.getElementById("play");
-    playButton.addEventListener("click", stopRecording);
+    playButton.addEventListener("click", stopRecordingAndPlay);
     // when you hit the play button WHILE ISreocinasidnaisdjasd omg typig
     // while isRecording is true, if you hit the play button, call stopRecording
     // if isRecording is false, do nothing.
-    function stopRecording() {
+
+    function stopRecordingAndPlay() {
         // remove active state from recording button and turn off isRecording
         recordButton.classList.remove('is-active');
         isRecording = false;
         // TODO while isRecording is on, transform play button into a Stop button
+        console.log(keysRecorded);
+        // and do stuff with the array here
     }
 
-
-
-
-
     // playback - each over the array of what was recorded and call the audio.play on each of them - you don't need to check which key it was
-    // break playSound into 2 - one that takes the key and plays it
     // can't just foreach and call - it won't play the right time but will play them all right away
     // instead you need to schedule the playback of each key
     // look at first item in the array, schedule it, play it, then remove (?) it and go to the next one - this also makes it easier in the future to cancel
+
 
 
     // remove the transition css style
