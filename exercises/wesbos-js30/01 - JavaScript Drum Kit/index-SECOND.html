@@ -93,14 +93,20 @@
             // console.log(e.keyCode);
             // now we can get the keycode that was pressed and record it into an array
             keysRecorded.push(e.keyCode);
+            keysRecorded.push({
+                // this is an obj literal
+                // string w/o quotes : value
+                keyCode: e.keyCode,
+                elapsedTime: (something goes here)
+            })
             // console.log(keysRecorded);
-            // also capture the time of the keypress
-            // want to capture the time when record button is pressed (zero)
-            // and the elapsed time between that and key being pressed
-            //
-        }
-        else {
-            // console.log("you are not recording");
+            // capture Date.now (start time) of the event that comes through captureKeyPressed
+            // then Date.now at the next one
+            // subtract previously recorded time from Date.now at second time
+            // and that is the elapsed time
+            // and record the elapsed time into the array
+            // now push an object into the array
+
         }
     }
 
@@ -144,6 +150,8 @@
         // i am p sure that if you each over the array and call audio.play on them this is the "solution" that will freeze chrome lol not trying it sry lon for your entertainment
         // console.log(keysRecorded);
         keysRecorded.forEach(keyCode => playSound(keyCode));
+        // this will not be a keyCode anymore, this will be an object
+        keysRecorded.forEach(pressedKey => playSound(pressedKey.keyCode));
 
         // instead you need to schedule the playback of each key
         // look at first item in the array, schedule it, play it, then remove (?) it and go to the next one - this also makes it easier in the future to cancel
