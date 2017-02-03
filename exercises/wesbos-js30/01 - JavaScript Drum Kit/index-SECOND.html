@@ -65,11 +65,10 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-    // remove the transition css style
-    function removeTransition(e) {
-        if (e.propertyName !== 'transform') return;
-        e.target.classList.remove('playing');
-    }
+    // listen on the window for any keydown and then run the playsound function
+    window.addEventListener('keydown', captureKeyPressed);
+
+    var isRecording = false;
 
     function captureKeyPressed(e) {
         const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
@@ -84,6 +83,13 @@
             key.classList.add('playing'); // adds playing transition class
         }
         // else return; // don't need this b/c it's the end of the function anyway and we aren't returning anything in the negative state
+
+        if (isRecording === true) {
+            console.log("you are recording");
+        }
+        else {
+            console.log("you are not recording");
+        }
     }
 
     function playSound(keyCode) {
@@ -101,13 +107,13 @@
         recordButton.classList.add('is-active');
         // next, notice that you're in a recording state
         // if recording is on, - how would you keep track? a class on the DOM, or a variable is true - let isRecording = false / true
-        var isRecording = true; // set recording state to be on
-        // console.log(isRecording);
+        isRecording = true;  // set recording state to be on
+        console.log(isRecording);
 
         // already listening on the window for all keydowns
-        // captureKeyPressed checks for the keydown matching the buttons that exist and plays the sound
-        // we want to get the audio keycode from each event through captureKeyPressed and record it into an array
-
+        // captureKeyPressed checks for the keydown matching the buttons that exist and passes the keycode into playSound
+        // playSound finds the audio element with that keycode and plays it
+        // now we can get the keycode that was pressed and record it into an array
 
 
         // an array that contains objects (buttonpress --> time, which keycode was pressed)
@@ -127,14 +133,17 @@
     // look at first item in the array, schedule it, play it, then remove (?) it and go to the next one - this also makes it easier in the future to cancel
 
 
+    // remove the transition css style
+    function removeTransition(e) {
+        if (e.propertyName !== 'transform') return;
+        e.target.classList.remove('playing');
+    }
+
     // this bit is commented out b/c this is the listener for each key and then removing the transition css style on it, we will be listening in another way
     const keys = Array.from(document.querySelectorAll('.key'));
         keys.forEach(key => {
         key.addEventListener('transitionend', removeTransition)
     });
-
-    // listen on the window for any keydown and then run the playsound function
-    window.addEventListener('keydown', captureKeyPressed);
 </script>
 
 <!--
