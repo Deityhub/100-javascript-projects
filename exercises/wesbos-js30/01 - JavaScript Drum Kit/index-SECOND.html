@@ -76,11 +76,6 @@
     const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
     if (!audio) return;
 
-	// if recording is on, - how would you keep track? a class on the DOM, or a variable is true - let isRecording = false / true
-	// already listening on the window for all keydowns
-	// line 67 checks for the keydown matching the buttons that exist
-	// an array that contains objects (buttonpress --> time, which keycode was pressed)
-
 	// these 3 lines into a separate function - call a function here that passes in what the key was and what the audio is
 
     key.classList.add('playing');
@@ -88,18 +83,26 @@
     audio.play();
   }
 
-	function isRecording() {
+	function beginRecording() {
 		// first, remove inactive class from play button
 		var playButton = document.getElementById("play");
 		playButton.classList.remove('is-inactive');
 		// then set is-active on record button because CSS
 		recordButton.classList.add('is-active');
+		// next, notice that you're in a recording state
+		// if recording is on, - how would you keep track? a class on the DOM, or a variable is true - let isRecording = false / true
+		var isRecording = true; // set recording state to be on
+		console.log(isRecording);
+
+		// already listening on the window for all keydowns
+		// `const audio` line in playsound checks for the keydown matching the buttons that exist
+		// an array that contains objects (buttonpress --> time, which keycode was pressed)
 
 	}
 	// watch for a click on the record button and when it is clicked
 	// run isRecording function
 	var recordButton = document.getElementById("record");
-	recordButton.addEventListener("click", isRecording);
+	recordButton.addEventListener("click", beginRecording);
 
 
 	// playback - each over the array of what was recorded and call the audio.play on each of them - you don't need to check which key it was
@@ -124,8 +127,9 @@
 
 * -add buttons to page w/ IDs - play has inactive-
 * -when record button is clicked, add active to play button-
-* watch for a click on the record button
-* when clicked - notice that you're in a recording state and record click and time - this is a different state than regular playing - -->
+* -watch for a click on the record button-
+* -when clicked - notice that you're in a recording state-
+* record click and time - this is a different state than regular playing - -->
 
 
 
