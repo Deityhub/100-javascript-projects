@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<div class="container">
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+  <div class="actions">
+	  <div class="record" id="record">Record</div>
+	  <div class="play is-inactive" id="play">Play</div>
+  </div>
+</div>
+
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key="83" src="sounds/hihat.wav"></audio>
+  <audio data-key="68" src="sounds/kick.wav"></audio>
+  <audio data-key="70" src="sounds/openhat.wav"></audio>
+  <audio data-key="71" src="sounds/boom.wav"></audio>
+  <audio data-key="72" src="sounds/ride.wav"></audio>
+  <audio data-key="74" src="sounds/snare.wav"></audio>
+  <audio data-key="75" src="sounds/tom.wav"></audio>
+  <audio data-key="76" src="sounds/tink.wav"></audio>
+
+<script>
+	// remove the transition css style
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+
+	// if recording is on, - how would you keep track? a class on the DOM, or a variable is true - let isRecording = false / true
+	// already listening on the window for all keydowns
+	// line 67 checks for the keydown matching the buttons that exist
+	// an array that contains objects (buttonpress --> time, which keycode was pressed)
+
+	// these 3 lines into a separate function - call a function here that passes in what the key was and what the audio is
+
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+	function isRecording() {
+		var playButton = document.getElementById("play");
+		playButton.classList.remove('is-inactive');
+
+	}
+  // when record button is clicked, remove inactive class from play button
+	var recordButton = document.getElementById("record");
+	recordButton.addEventListener("click", isRecording);
+
+
+	// playback - each over the array of what was recorded and call the audio.play on each of them - you don't need to check which key it was
+	// break playSound into 2 - one that takes the key and plays it
+	// can't just foreach and call - it won't play the right time but will play them all right away
+	// instead you need to schedule the playback of each key
+	// look at first item in the array, schedule it, play it, then remove (?) it and go to the next one - this also makes it easier in the future to cancel
+
+
+	// this bit is commented out b/c this is the listener for each key and then removing the transition css style on it, we will be listening in another way
+  // const keys = Array.from(document.querySelectorAll('.key'));
+  // keys.forEach(key => {
+  //  key.addEventListener('transitionend', removeTransition)
+  // });
+
+  	// listen on the window for any keydown and then run the playsound function
+    window.addEventListener('keydown', playSound);
+</script>
+
+<!--
+// Add a record button and play button - when page loads, play button is inactive because there's no recording to play - record button is active. when you hit the record button, it will record from then which buttons were pushed and the time they were pushed at. when you press play button (or press record again?) it will stop recording and then play back the result w/ correct timing. it should not freeze the browser (there is apparently a solution that will).
+
+* -add buttons to page w/ IDs - play has inactive-
+* -when record button is clicked, add active to play button-
+* watch for a click on the record button
+* when clicked - notice that you're in a recording state and record click and time - this is a different state than regular playing - -->
+
+
+
+
+</body>
+</html>
