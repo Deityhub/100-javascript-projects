@@ -1,7 +1,8 @@
 html {
   font-size: 10px;
-  background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
-  background-size: cover;
+  /*background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;*/
+  /*background-size: cover;*/
+  background: white;
 }
 body,html {
   margin: 0;
@@ -18,7 +19,7 @@ body,html {
 	flex: 1;
 	align-items: center;
 	justify-content: center;
-	padding-top: 2em;
+	padding: 4em 0;
 }
 
 .key {
@@ -67,19 +68,60 @@ kbd {
 .play {
 	display: inline-block;
 	padding: 1em;
-	background: black;
 	cursor: pointer;
 }
 
-.record:hover,
-.play:hover {
+.play {
+	background: rgba(83,183,6,1);
 	color: white;
+}
+
+.record.is-active {
 }
 
 .play.is-inactive {
 	opacity: .5;
 	cursor: default;
 }
-.play.is-inactive:hover {
-	color: #ffc600;
+
+.record {
+  margin-right: 50px;
+  width: 70px;
+  height: 70px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 70px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  background: #ce1818;
+  cursor: pointer;
+}
+
+.record.is-active {
+  box-shadow: 0 0 0 0 rgba(206, 24, 24, 0.5);
+  -webkit-animation: pulse 1.5s infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  70% {
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+  }
+  100% {
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+  }
 }

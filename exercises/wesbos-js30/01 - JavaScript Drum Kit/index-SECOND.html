@@ -89,11 +89,15 @@
   }
 
 	function isRecording() {
+		// first, remove inactive class from play button
 		var playButton = document.getElementById("play");
 		playButton.classList.remove('is-inactive');
+		// then set is-active on record button because CSS
+		recordButton.classList.add('is-active');
 
 	}
-  // when record button is clicked, remove inactive class from play button
+	// watch for a click on the record button and when it is clicked
+	// run isRecording function
 	var recordButton = document.getElementById("record");
 	recordButton.addEventListener("click", isRecording);
 
