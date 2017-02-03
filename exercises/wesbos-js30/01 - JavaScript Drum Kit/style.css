@@ -9,12 +9,16 @@ body,html {
   font-family: sans-serif;
 }
 
+.container {
+	min-height: 100vh;
+}
+
 .keys {
-  display: flex;
-  flex: 1;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2em;
 }
 
 .key {
@@ -47,4 +51,21 @@ kbd {
   text-transform: uppercase;
   letter-spacing: .1rem;
   color: #ffc600;
+}
+
+.actions {
+	text-align: center;
+    margin: 0 auto;
+    padding: 1em 2em;
+    font-size: 16px;
+    color: #ffc600;
+    font-weight: bold;
+
+}
+
+.record,
+.play {
+	display: inline-block;
+	padding: 1em;
+	background: black;
 }
