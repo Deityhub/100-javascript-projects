@@ -68,4 +68,18 @@ kbd {
 	display: inline-block;
 	padding: 1em;
 	background: black;
+	cursor: pointer;
+}
+
+.record:hover,
+.play:hover {
+	color: white;
+}
+
+.play.is-inactive {
+	opacity: .5;
+	cursor: default;
+}
+.play.is-inactive:hover {
+	color: #ffc600;
 }
