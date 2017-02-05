@@ -92,14 +92,16 @@
             // console.log("you are recording");
             // console.log(e.keyCode);
             // now we can get the keycode that was pressed and record it into an array
-            keysRecorded.push(e.keyCode);
+            // var timeInMs = Date.now();
+            // console.log(timeInMs);
+            
             keysRecorded.push({
                 // this is an obj literal
                 // string w/o quotes : value
                 keyCode: e.keyCode,
-                elapsedTime: (something goes here)
+                elapsedTime: Date.now()
             })
-            // console.log(keysRecorded);
+            console.log(keysRecorded);
             // capture Date.now (start time) of the event that comes through captureKeyPressed
             // then Date.now at the next one
             // subtract previously recorded time from Date.now at second time
@@ -131,7 +133,6 @@
         // next, notice that you're in a recording state
         // if recording is on, - how would you keep track? a class on the DOM, or a variable is true - let isRecording = false / true
         isRecording = true;  // set recording state to be on
-        // console.log(isRecording);
     }
 
 
@@ -151,7 +152,7 @@
         // console.log(keysRecorded);
         keysRecorded.forEach(keyCode => playSound(keyCode));
         // this will not be a keyCode anymore, this will be an object
-        keysRecorded.forEach(pressedKey => playSound(pressedKey.keyCode));
+        // keysRecorded.forEach(pressedKey => playSound(pressedKey.keyCode));
 
         // instead you need to schedule the playback of each key
         // look at first item in the array, schedule it, play it, then remove (?) it and go to the next one - this also makes it easier in the future to cancel
