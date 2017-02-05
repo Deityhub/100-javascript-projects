@@ -102,7 +102,7 @@
                 keyCode: e.keyCode,
                 elapsedTime: elapsedTime
             })
-            console.log(keysRecorded);
+            // console.log(keysRecorded);
             // capture Date.now (start time) of the event that comes through captureKeyPressed
             // then Date.now at the next one
             // subtract previously recorded time from Date.now at second time
@@ -116,9 +116,9 @@
     function playSound(keyCode) {
         // audio = audio element with keyCode
         const audio = document.querySelector(`audio[data-key="${keyCode}"]`); // capture the audio element with the passed through keycode from the dom again
+        // console.log(keyCode);
         audio.currentTime = 0;
         audio.play();
-        // console.log(keyCode);
     }
 
     // watch for a click on the record button and when it is clicked
@@ -152,16 +152,23 @@
         // TODO while isRecording is on, transform play button into a Stop button
         // console.log(keysRecorded); // OMG the array
         // it wasn't
-        // console.log(keysRecorded);
+        console.log(keysRecorded);
         // keysRecorded.forEach(keyCode => playSound(keyCode));
         // this will not be a keyCode anymore, this will be an object
-        keysRecorded.forEach(pressedKey => playSound(pressedKey.keyCode));
+        // keysRecorded.forEach(pressedKey => playSound(pressedKey.keyCode));
 
         // instead you need to schedule the playback of each key
         // look at first item in the array, schedule it, play it, then remove (?) it and go to the next one - this also makes it easier in the future to cancel
 
+        // make a set timeout
+        // set timeout will call the function playSound
+        // with the timeout being the elapsedtime
+
+        keysRecorded.forEach(pressedKey => console.log(pressedKey.keyCode + " and " + pressedKey.elapsedTime));
+        keysRecorded.forEach(pressedKey => setTimeout(playSound(pressedKey.keyCode), pressedKey.elapsedTime));
 
     }
+
 
 
     // remove the transition css style
