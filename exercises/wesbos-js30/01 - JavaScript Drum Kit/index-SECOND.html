@@ -69,6 +69,7 @@
     window.addEventListener('keydown', captureKeyPressed);
 
     var isRecording = false;
+    var isRecording = null;
 
     // set up array to hold the keycodes from captureKeyPressed
     var keysRecorded = [];
@@ -92,14 +93,14 @@
             // console.log("you are recording");
             // console.log(e.keyCode);
             // now we can get the keycode that was pressed and record it into an array
-            // var timeInMs = Date.now();
-            // console.log(timeInMs);
-            
+            var timeOfKeyPress = Date.now();
+            var elapsedTime = timeOfKeyPress - startOfRecording;
+            // console.log("key press at " + timeOfKeyPress + " minus start time of " + startOfRecording + " equals " + elapsedTime);
             keysRecorded.push({
                 // this is an obj literal
                 // string w/o quotes : value
                 keyCode: e.keyCode,
-                elapsedTime: Date.now()
+                elapsedTime: elapsedTime
             })
             console.log(keysRecorded);
             // capture Date.now (start time) of the event that comes through captureKeyPressed
@@ -133,6 +134,8 @@
         // next, notice that you're in a recording state
         // if recording is on, - how would you keep track? a class on the DOM, or a variable is true - let isRecording = false / true
         isRecording = true;  // set recording state to be on
+        startOfRecording = Date.now();
+        // console.log("start time of recording is " + startOfRecording);
     }
 
 
