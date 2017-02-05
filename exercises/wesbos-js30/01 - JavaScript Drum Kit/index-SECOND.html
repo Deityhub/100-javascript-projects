@@ -153,9 +153,9 @@
         // console.log(keysRecorded); // OMG the array
         // it wasn't
         // console.log(keysRecorded);
-        keysRecorded.forEach(keyCode => playSound(keyCode));
+        // keysRecorded.forEach(keyCode => playSound(keyCode));
         // this will not be a keyCode anymore, this will be an object
-        // keysRecorded.forEach(pressedKey => playSound(pressedKey.keyCode));
+        keysRecorded.forEach(pressedKey => playSound(pressedKey.keyCode));
 
         // instead you need to schedule the playback of each key
         // look at first item in the array, schedule it, play it, then remove (?) it and go to the next one - this also makes it easier in the future to cancel
