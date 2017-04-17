@@ -69,7 +69,7 @@
     window.addEventListener('keydown', captureKeyPressed);
 
     var isRecording = false;
-    var isRecording = null;
+    var startOfRecording = null;
 
     // set up array to hold the keycodes from captureKeyPressed
     var keysRecorded = [];
@@ -134,6 +134,7 @@
         // next, notice that you're in a recording state
         // if recording is on, - how would you keep track? a class on the DOM, or a variable is true - let isRecording = false / true
         isRecording = true;  // set recording state to be on
+        keysRecorded = []; // clear recording array so it doesn't contain any previously recorded keypresses just in case
         startOfRecording = Date.now();
         // console.log("start time of recording is " + startOfRecording);
     }
@@ -152,7 +153,7 @@
         // TODO while isRecording is on, transform play button into a Stop button
         // console.log(keysRecorded); // OMG the array
         // it wasn't
-        console.log(keysRecorded);
+        // console.log(keysRecorded);
         // keysRecorded.forEach(keyCode => playSound(keyCode));
         // this will not be a keyCode anymore, this will be an object
         // keysRecorded.forEach(pressedKey => playSound(pressedKey.keyCode));
@@ -164,8 +165,25 @@
         // set timeout will call the function playSound
         // with the timeout being the elapsedtime
 
-        keysRecorded.forEach(pressedKey => console.log(pressedKey.keyCode + " and " + pressedKey.elapsedTime));
-        keysRecorded.forEach(pressedKey => setTimeout(playSound(pressedKey.keyCode), pressedKey.elapsedTime));
+        // keysRecorded.forEach(pressedKey => console.log(pressedKey.keyCode + " and " + pressedKey.elapsedTime));
+        // keysRecorded.forEach(pressedKey => setTimeout(playSound(pressedKey.keyCode), pressedKey.elapsedTime));
+        // set timeout takes a reference to a function - here we are giving it the return value of playSound instead of saying "call this function at this delayed time"
+
+        var playbackStarted = Date.now();
+        keysRecorded.forEach(pressedKey => {
+            setTimeout(playSound.bind(null, pressedKey.keyCode), pressedKey.elapsedTime);
+        });
+        // keysRecorded.forEach(pressedKey => {
+        //     setTimeout(
+        //         function () {
+        //             console.log(`Pressing ${pressedKey.keyCode}`);
+        //             console.log(`Expected delay ${pressedKey.elapsedTime}, got ${Date.now() - playbackStarted}`)
+        //             playSound(pressedKey.keyCode);
+        //         },
+        //         pressedKey.elapsedTime
+        //     );
+        // });
+
 
     }
 
