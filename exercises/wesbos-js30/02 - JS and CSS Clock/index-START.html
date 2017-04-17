@@ -41,11 +41,11 @@
       margin:50px auto;
       position: relative;
       padding:2rem;
-      box-shadow:
+      /*box-shadow:
         0 0 0 4px rgba(0,0,0,0.1),
         inset 0 0 0 3px #EFEFEF,
         inset 0 0 10px black,
-        0 0 10px rgba(0,0,0,0.2);
+        0 0 10px rgba(0,0,0,0.2);*/
     }
 
     .clock-face {
@@ -61,37 +61,81 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: right center;
+      transform: rotate(90deg); /* start at 12oclock */
     }
 
     .second-hand {
-        transform-origin: right center;
-        background: red;
+        background: honeydew;
+    }
+
+    .min-hand {
+        background: palevioletred;
+    }
+
+    .hour-hand {
+        background: lemonchiffon;
     }
 
   </style>
   <script>
 
-      const secondhand = document.querySelector(`.second-hand`);
+        const secondhand = document.querySelector(`.second-hand`);
+        const minutehand = document.querySelector(`.min-hand`);
 
-      var clock = window.setInterval(moveClockHands, 1000);
+        // var clock = window.setInterval(moveClockHands, 62.5);
+        var clock = window.setInterval(moveClockHands, 1000);
 
-      // have the css transform take a time and then move
-      // interval handler is passing current date and time to secondhand
-      // get date.now and math that into a radial position
-      //
-      var rotation = 0;
-
-      function moveClockHands() {
-        //   console.log("🚀");
-        // get date.now
+        // have the css transform take a time and then move
+        // interval handler is passing current date and time to secondhand
+        // get date.now and math that into a radial position
+        //
+        var rotation = 90;
+        var secondsRotation = rotation;
+        var minRotation = rotation;
+        var hourRotation = rotation;
         var time = Date.now();
-        // console.log(time);
-        rotation = rotation + 6;
-        // console.log(rotation);
-        // rotation is 360 / 60  = 6 degrees
-        // +6 every time this function is called
-        secondhand.style.transform = "rotate("+rotation+"deg)";
-      }
+
+        function moveSecondHand() {
+            //   console.log("🚀");
+            // get date.now
+            secondsRotation = secondsRotation + 6;
+            // console.log(rotation);
+            // rotation is 360 / 60  = 6 degrees
+            // +6 every time this function is called
+            secondhand.style.transform = "rotate("+secondsRotation+"deg)";
+        }
+
+        // a circle has 360 degrees
+        // so one second is a 6 degree rotation  --> 60 * 6 = 360
+        // 60 seconds in a minute
+        // minute hand should move 6 degrees every 60 seconds
+        // so every 1s = .016degrees
+        // 60 minutes in an hour
+        // 12 hours --> 360 degrees / 12 --> 30 degrees
+        // hour hand should move 30 degrees every 60 minutes
+        //
+
+        function moveMinuteHand() {
+            // minute hand needs to move once every 60 rotations
+            // do a new setinterval?
+            // or just set a different rotation?
+
+            minRotation = minRotation + .016666666667;
+            // rotate ONE degree every 60
+            // console.log(minRotation);
+            minutehand.style.transform = "rotate("+minRotation+"deg)";
+        }
+
+        function moveHourHand() {
+            hourRotation = hourRotation + .016666666667;
+            minutehand.style.transform = "rotate("+hourRotation+"deg)";
+        }
+
+        function moveClockHands() {
+            moveSecondHand();
+            moveMinuteHand();
+        }
 
 
   </script>
