@@ -71,16 +71,28 @@
   </style>
   <script>
 
-      // settimeout -interval? each second, rotate 1 degree
-      // on every second update each element's rotation  -->
-
-      var intervalID = window.setInterval(myCallback, 1000);
       const secondhand = document.querySelector(`.second-hand`);
 
-      function myCallback() {
-          console.log("🚀");
-          secondhand.style.transform = "rotate(10deg)";
+      var clock = window.setInterval(moveClockHands, 1000);
+
+      // have the css transform take a time and then move
+      // interval handler is passing current date and time to secondhand
+      // get date.now and math that into a radial position
+      //
+      var rotation = 0;
+
+      function moveClockHands() {
+        //   console.log("🚀");
+        // get date.now
+        var time = Date.now();
+        // console.log(time);
+        rotation = rotation + 6;
+        // console.log(rotation);
+        // rotation is 360 / 60  = 6 degrees
+        // +6 every time this function is called
+        secondhand.style.transform = "rotate("+rotation+"deg)";
       }
+
 
   </script>
 </body>
