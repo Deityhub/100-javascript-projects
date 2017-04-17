@@ -63,10 +63,24 @@
       top:50%;
     }
 
+    .second-hand {
+        transform-origin: right center;
+        background: red;
+    }
+
   </style>
-// on every second update each element's rotation 
   <script>
 
+      // settimeout -interval? each second, rotate 1 degree
+      // on every second update each element's rotation  -->
+
+      var intervalID = window.setInterval(myCallback, 1000);
+      const secondhand = document.querySelector(`.second-hand`);
+
+      function myCallback() {
+          console.log("🚀");
+          secondhand.style.transform = "rotate(10deg)";
+      }
 
   </script>
 </body>
