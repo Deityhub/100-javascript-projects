@@ -21,6 +21,23 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+  /*set three css variables*/
+  /*use them on the image*/
+  :root {
+      --base: #ffc600;
+      --spacing: 20px;
+      --blur: 10px;
+  }
+
+  img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+  }
+
+  .hl {
+      color: var(--base);
+  }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -48,6 +65,31 @@
   </style>
 
   <script>
+      // access toggle/range slider for each
+      // select all the inputs so when they change we can update css variables
+
+      const inputs = document.querySelectorAll('.controls input');
+
+    // create a function to handle updating of the ...? sliders? vars?
+    function handleUpdate() {
+        //console.log(this.value); // value of input
+        // what is the unit (px, color, etc)
+        // get the `data-sizing` attribute off the input
+        // this.dataset contains all the data attrs from an element
+        // can be accessed with dot notation
+        const unit = this.dataset.sizing || ''; // if no sizing attr, append nothing
+        // console.log(this.value + unit);
+        // how to update a css var?
+        // select entire :root of page and set a property on it that matches var name
+        console.log(this.name); // name of property
+        document.documentElement.style.setProperty(`--${this.name}`, this.value + unit);
+    }
+
+    // listen for a change event on each input
+    // and then run handleupdate
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate)); // works on any motion, not just when mouse is let go and changes
+
   </script>
 
 </body>
