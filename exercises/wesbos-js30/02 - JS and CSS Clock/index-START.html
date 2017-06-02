@@ -62,7 +62,6 @@
       position: absolute;
       top:50%;
       transform-origin: right center;
-      transform: rotate(90deg); /* start at 12oclock */
     }
 
     .second-hand {
@@ -79,63 +78,49 @@
 
   </style>
   <script>
+  // TODO: Next steps
+  // - read https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date to learn about all the things Date can do
+  // - refactor to get the current time and move clock hands - don't keep track of where they were
 
         const secondhand = document.querySelector(`.second-hand`);
         const minutehand = document.querySelector(`.min-hand`);
+        const hourhand = document.querySelector(`.hour-hand`);
 
-        // var clock = window.setInterval(moveClockHands, 62.5);
-        var clock = window.setInterval(moveClockHands, 1000);
+        // question — accessing this vs creating?
+        // const foo = now.getFullYear();
+        // console.log(foo);
 
-        // have the css transform take a time and then move
-        // interval handler is passing current date and time to secondhand
-        // get date.now and math that into a radial position
-        //
-        var rotation = 90;
-        var secondsRotation = rotation;
-        var minRotation = rotation;
-        var hourRotation = rotation;
-        var time = Date.now();
 
-        function moveSecondHand() {
-            //   console.log("🚀");
-            // get date.now
-            secondsRotation = secondsRotation + 6;
-            // console.log(rotation);
-            // rotation is 360 / 60  = 6 degrees
-            // +6 every time this function is called
-            secondhand.style.transform = "rotate("+secondsRotation+"deg)";
+        // set each hand to the current time
+
+        function setClock() {
+            const now = new Date(); // Creates a JavaScript Date instance that represents a single moment in time.
+
+            const seconds = now.getSeconds();
+            const secondsDegrees = ((seconds / 60) * 360) + 90;
+            secondhand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+            const minutes = now.getMinutes();
+            const minutesDegrees = ((minutes / 60) * 360) + 90;
+            minutehand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+            const hour = now.getHours();
+            // number comes back in 24h time but there's only 12 positions
+            // 7 --> 7 but 19 --> 7 --> hours % 12 (positions) -> hour position
+            // console.log(hour);
+            // or take 24h clock / 12
+            // 360 degrees / 12 hours = 30 degrees per hour
+            // hours / 12 = number of times around to get to that position
+            // * 360 = degrees
+            // add to the number of degrees the addtl degrees of the minutes
+            // minutes / 60 * 30 (degrees per hour) - not degrees per entire circle
+            const hourDegrees = ((hour / 12) * 360) + ((minutes/60)*30) + 90;
+            // minutehand.style.transform = `rotate(${hourDegrees}deg)`;
         }
 
-        // a circle has 360 degrees
-        // so one second is a 6 degree rotation  --> 60 * 6 = 360
-        // 60 seconds in a minute
-        // minute hand should move 6 degrees every 60 seconds
-        // so every 1s = .016degrees
-        // 60 minutes in an hour
-        // 12 hours --> 360 degrees / 12 --> 30 degrees
-        // hour hand should move 30 degrees every 60 minutes
-        //
+        setInterval(setClock, 1000);
 
-        function moveMinuteHand() {
-            // minute hand needs to move once every 60 rotations
-            // do a new setinterval?
-            // or just set a different rotation?
-
-            minRotation = minRotation + .016666666667;
-            // rotate ONE degree every 60
-            // console.log(minRotation);
-            minutehand.style.transform = "rotate("+minRotation+"deg)";
-        }
-
-        function moveHourHand() {
-            hourRotation = hourRotation + .016666666667;
-            minutehand.style.transform = "rotate("+hourRotation+"deg)";
-        }
-
-        function moveClockHands() {
-            moveSecondHand();
-            moveMinuteHand();
-        }
+        setClock();
 
 
   </script>
