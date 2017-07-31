@@ -23,7 +23,11 @@ Inspired by @jessabean's [100 Days of Javascript](https://github.com/jessabean/1
 3. [recursion](exercises/081816-recursion.js)
 4. [character counting](exercises/081816-beancounting.js)
 5. [reverse array](exercises/083016-reversearray.js)
-6. JS30 Exercise 1 - JS Drum Kit [draft](exercises/wesbos-js30/01 - JavaScript Drum Kit/draft-code.js) and [finished](exercises/wesbos-js30/01 - JavaScript Drum Kit/index-START.html)
+6. JS30 Exercise 1 — JS Drum Kit [draft](exercises/wesbos-js30/01%20-%20JavaScript%20Drum%20Kit/draft-code.js) and [finished](exercises/wesbos-js30/01%20-%20JavaScript%20Drum%20Kit/index-START.html)
+7. JS30 Exercise 2 — Clock [finished](exercises/wesbos-js30/02%20-%20JS%20and%20CSS%20Clock/index-START.html)
+8. JS30 Exercise 3 — CSS Variables [finished](exercises/wesbos-js30/03%20-%20CSS%20Variables/index-START.html)
+9. JS30 Exercise 4 — Array Cardio [finished](exercises/wesbos-js30/04%20-%20Array Cardio%20Day%201/index-START.html)
+10. *not started* [date delta](exercises/060917-datedelta.js)
 
 ## Resources
 
