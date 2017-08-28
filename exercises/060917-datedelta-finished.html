@@ -28,8 +28,8 @@
       var dateDelta = 0;
 
       // if no start date is given fall back to start date being date.now
-      var startDate = new Date('May 27, 1986');
-      var endDate = new Date('May 27, 1996');
+      var startDate = new Date('December 17, 1995 03:24:00');
+      var endDate = new Date('December 17, 1995 04:25:00');
 
 
 
@@ -43,19 +43,34 @@
       // check newelapsed (in whatever unit) vs conversionfactor
 
       const conversions = [
-        { cf: 1000, toUnit: 'sec' },
-        { cf: 60, toUnit: 'min' },
-        { cf: 60, toUnit: 'hr' },
+        { cf: 1000, toUnit: 'second' },
+        { cf: 60, toUnit: 'minute' },
+        { cf: 60, toUnit: 'hour' },
         { cf: 24, toUnit: 'day' },
         { cf: 30, toUnit: 'month' },
         { cf: 12, toUnit: 'year' }
       ];
 
-    //   console.log(conversions);
 
         // take elapsed time
         var elapsed = endDate - startDate; // returns a number in ms
-        console.log('the original elapsed time is ' + elapsed + ' in ms');
+        // console.log('the original elapsed time is ' + elapsed + ' in ms');
+        // check if elapsed is pos/neg
+        var tense = " ";
+
+        if (elapsed > 0) {
+            // positive - end date is later than start date ("from")
+            tense = " from " + startDate;
+        } else if (elapsed < 0) {
+            // negative - end date is before start date so in the past ("ago")
+            tense = " ago";
+        } else {
+            // if actually 0
+        }
+
+        // now convert elapsed to absolute value, since we know above if it's pos/neg
+        elapsed = Math.abs(elapsed);
+
         var delta = 0;
         var i = 0;
 
@@ -73,13 +88,23 @@
             elapsed = elapsed / conversions[i].cf;
         }
 
-        var actualUnits = 'ms'; // default value of units
+        // remove remainder
+        elapsed = Math.floor(elapsed);
+
+        var actualUnits = 'millisecond'; // default value of units
         if (i > 0) {
             actualUnits = conversions[i-1].toUnit;
         }
+        // pluralize actualUnits if greater than 1
+        if (elapsed > 1) {
+            actualUnits = actualUnits + 's';
+        }
 
-        console.log('the elapsed time is ' + elapsed + ' ' +  actualUnits);
 
+        // define past/future
+        // check pos/neg
+
+        console.log('the elapsed time is ' + elapsed + ' ' +  actualUnits + tense);
 
     }
 
