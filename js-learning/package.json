@@ -1,0 +1,17 @@
+{
+  "name": "js-learning",
+  "version": "1.0.0",
+  "description": "Exercises for learning JS fundamentals",
+  "repository": {
+    "type": "git",
+    "url": "git@code.corp.indeed.com:rebeccam/js-learning.git"
+  },
+  "author": "Rebecca Murphey <rebeccam@indeed.com>",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+  }
+}
