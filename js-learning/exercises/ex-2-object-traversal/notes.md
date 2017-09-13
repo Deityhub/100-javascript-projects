@@ -1,0 +1,32 @@
+# notes
+
+* had some trouble getting test to use functions from index despite index already being required. you have to export each function individually from index, you don't get just the file contents by requiring it.
+
+`function square(number) { stuff }` vs `var square = function(number) { stuff }`
+
+> Function expressions are convenient when passing a function as an argument to another function.
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
+
+Functions must be in scope when they are called, but the function declaration can be hoisted (appear below the call in the code), as in this example:
+
+```
+console.log(square(5));
+/* ... */
+function square(n) { return n * n; }
+```
+
+The scope of a function is the function in which it is declared, or the entire program if it is declared at the top level.
+
+Note: This works only when defining the function using the above syntax (i.e. `function funcName(){}`). The code below will not work. That means, function hoisting only works with function declaration and not with function expression.
+
+WILL NOT WORK
+```
+console.log(square); // square is hoisted with an initial value undefined.
+console.log(square(5)); // TypeError: square is not a function
+var square = function(n) {
+  return n * n;
+}
+```
+
+QUESTION: why do we normally default to `var foo = function` — to make it NOT possible to hoist?

@@ -1,5 +1,5 @@
-function sayIt(phrase) {
-    console.log(phrase)
+function passwordsWithAtLeastTwoCapitalLetters(phrase) {
+    return phrase;
 }
 
-sayIt('hello world');
+module.exports = { passwordsWithAtLeastTwoCapitalLetters };
