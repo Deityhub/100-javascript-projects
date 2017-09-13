@@ -3,9 +3,9 @@ const assert = require('assert');
 const data = require('../../data/MOCK_DATA.json');
 const T = require('./index');
 
-console.log(T.passwordsWithAtLeastTwoCapitalLetters("🍌"));
+const passwordsWithAtLeastTwoCapitalLetters = T.getPasswordsWithAtLeastTwoCapitalLetters("💖");
 
-// const passwordsWithAtLeastTwoCapitalLetters = T.getPasswordsWithAtLeastTwoCapitalLetters(data);
+console.log(passwordsWithAtLeastTwoCapitalLetters);
 
 // assert.equal(passwordsWithAtLeastTwoCapitalLetters.length, 928);
 // assert.equal(passwordsWithAtLeastTwoCapitalLetters[3], 'qiTyYy');
@@ -21,4 +21,4 @@ console.log(T.passwordsWithAtLeastTwoCapitalLetters("🍌"));
 //
 // assert.equal(southernHemispherePeople.length, 59);
 
-console.log('tests ok');
+// console.log('tests ok');

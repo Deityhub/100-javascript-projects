@@ -1,5 +1,5 @@
-function passwordsWithAtLeastTwoCapitalLetters(phrase) {
+var getPasswordsWithAtLeastTwoCapitalLetters = function(phrase) {
     return phrase;
 }
 
-module.exports = { passwordsWithAtLeastTwoCapitalLetters };
+module.exports = { getPasswordsWithAtLeastTwoCapitalLetters };
