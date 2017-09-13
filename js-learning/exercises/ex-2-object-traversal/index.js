@@ -37,9 +37,11 @@ for (i = 0; i < data.length; i++) {
 
     // check to see if there are capital letters in the password
     // how to check if there are capital letters? regex? toUpperCase?
-    // if (password != null) {
+    // console.log(hasUppercaseCase(password)); // looong list of trues/falses!
+    if ( hasUppercaseCase(password) === true) {
 
-    //} // else, return
+    }
+
     // edge cases:
     // check if it's null
     // works with umlauts, etc
