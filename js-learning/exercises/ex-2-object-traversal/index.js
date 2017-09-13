@@ -23,26 +23,41 @@ function hasUppercaseCase(str) {
     // return str.toLowerCase() != str;
     // this is 💩, let's try match() instead
 
-    var test = str; // test string
-    var regexp = /^(?=.*[A-Z]{2,}).+$/; // this catches two or more caps TOGETHER, e.g. ABCdskfj but not AkjdC 
+    // var test = str; // test string
+    // var regexp = /^(?=.*[A-Z]{2,}).+$/; // this catches two or more caps TOGETHER, e.g. ABCdskfj but not AkjdC
 
-    return str.match(regexp); // will either be null or return the match
+    // return str.match(regexp); // will either be null or return the match
     // for example [ 'ihaveFIVEUppercase', index: 0, input: 'ihaveFIVEUppercase' ]
+
+    var str = str;
+    var count = 0;
+    var pos = str.indexOf('e'); // works
+    // var pos = str.indexOf(/^A-Z/); // doesn't work
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search ???
+
+    while (pos !== -1) {
+      count++;
+      pos = str.indexOf('e', pos + 1); // works
+    //   pos = str.indexOf(/^A-Z/, pos + 1); // doesn't work
+    }
+
+    console.log(count);
 }
 
-// console.log( hasUppercaseCase('foo') );                 // null
-// console.log( hasUppercaseCase('Foo') );                 // null
-// console.log( hasUppercaseCase('BAR') );                 // match
-// console.log( hasUppercaseCase('ihavenouppercase') );    // null
-// console.log( hasUppercaseCase('ihaveOneuppercase') );   // null
-// console.log( hasUppercaseCase('ihaveTWouppercase') );   // match
-// console.log( hasUppercaseCase('ihaveFIVEUppercase') );  // match
-// console.log( hasUppercaseCase('12345698') );            // null
-// console.log( hasUppercaseCase('ABC131424') );           // match
-// console.log( hasUppercaseCase('ABCdef938585') );        // match
-// console.log( hasUppercaseCase('1837defo98258') );       // null
-// console.log( hasUppercaseCase('858ABDJ2875') );         // match
-// console.log( hasUppercaseCase('85!!!8ABDJ2875') );      // match
+hasUppercaseCase('foo');
+hasUppercaseCase('fooey');
+hasUppercaseCase('Foo');
+hasUppercaseCase('BAR');
+hasUppercaseCase('ihavenouppercase');
+hasUppercaseCase('ihaveOneuppercase');
+hasUppercaseCase('ihaveTWouppercase');
+hasUppercaseCase('ihaveFIVEUppercase');
+hasUppercaseCase('12345698');
+hasUppercaseCase('ABC131424');
+hasUppercaseCase('ABCdef938585');
+hasUppercaseCase('1837deeeeEeeeeEEEefo98258');
+hasUppercaseCase('858ABDJ2875');
+hasUppercaseCase('85!!!8ABDJ2875');
 
 
 var getPasswordsWithAtLeastTwoCapitalLetters = function() {
@@ -83,6 +98,6 @@ var getPasswordsWithAtLeastTwoCapitalLetters = function() {
     // the tests tell me that there should be 928 of them, out of 1000 in the data
 }
 
-getPasswordsWithAtLeastTwoCapitalLetters();
+// getPasswordsWithAtLeastTwoCapitalLetters();
 
 module.exports = { getPasswordsWithAtLeastTwoCapitalLetters };
