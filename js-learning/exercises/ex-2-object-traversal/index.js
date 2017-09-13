@@ -19,13 +19,31 @@ const data = require('../../data/MOCK_DATA.json');
 // iterate over data until we reach the end (until iterator is = data.length)
 // console.log(data.length); // which is 1000
 
+function hasUppercaseCase(str) {
+    return str.toLowerCase() != str;
+}
+// console.log( hasUppercaseCase('foo') ); // false, has no uppercase
+// console.log( hasUppercaseCase('Foo') ); // true, has uppercase
+// console.log( hasUppercaseCase('BAR') ); // true, has uppercase
+// console.log( hasUppercaseCase('124kjf8DDDadasd') ); // true, has uppercase
+// console.log( hasUppercaseCase('38rhalkd87ff') ); // false, has no uppercase
+// console.log( hasUppercaseCase('38rhlkd87ffä') ); // false, ä is lowercase
+// console.log( hasUppercaseCase('38rhlkd87ffÄ') ); // true, Ä is uppercase
+
 for (i = 0; i < data.length; i++) {
     // console.log(data[i].password); // will spit out a loooong list of pws!
     var password = data[i].password;
-    if (password != null) {
-        console.log("password is not null, password is " + password);
-    } // else, return
+
+
     // check to see if there are capital letters in the password
+    // how to check if there are capital letters? regex? toUpperCase?
+    // if (password != null) {
+
+    //} // else, return
+    // edge cases:
+    // check if it's null
+    // works with umlauts, etc
+    // non-roman characters? yikes
 
 };
 
