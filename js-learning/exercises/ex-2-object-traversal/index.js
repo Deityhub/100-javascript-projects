@@ -24,11 +24,10 @@ function hasUppercaseCase(str) {
     // this is 💩, let's try match() instead
 
     var test = str; // test string
-    var regexp = /^(?=.*[A-Z]{2,}).+$/; // regexp to check for 2+ {2,} caps
+    var regexp = /^(?=.*[A-Z]{2,}).+$/; // this catches two or more caps TOGETHER, e.g. ABCdskfj but not AkjdC 
 
     return str.match(regexp); // will either be null or return the match
     // for example [ 'ihaveFIVEUppercase', index: 0, input: 'ihaveFIVEUppercase' ]
-
 }
 
 // console.log( hasUppercaseCase('foo') );                 // null
@@ -55,24 +54,22 @@ var getPasswordsWithAtLeastTwoCapitalLetters = function() {
         // console.log(data[i].password); // will spit out a loooong list of pws!
         var password = data[i].password;
 
-        // check to see if there are capital letters in the password
-        // how to check if there are capital letters? regex? toUpperCase?
-        // console.log(hasUppercaseCase(password)); // looong list of trues/falses!
+        console.log(password);
 
-        // this just checks if there is ONE capital letter, not TWO
-        // if ( hasUppercaseCase(password) === true) { == 986 items
 
         // if there are more than two, add it to that new array
         // if there are less than two, discard it (but don't
         // remove it from the mock data obvs)
 
         // check to see if there are two
-        if ( hasUppercaseCase(password) === null) {
-            // console.log("i don't have uppercases, hasUppercaseCase returned null")
-        } else {
-            // console.log("i do have uppercases")
-            passwordsWithAtLeastTwoCapitalLetters.push(password); // push to new array
-        }
+        // if ( hasUppercaseCase(password) === null) {
+        //     // console.log("i don't have uppercases, hasUppercaseCase returned null")
+        // } else {
+        //     // console.log("i do have uppercases")
+        //     passwordsWithAtLeastTwoCapitalLetters.push(password); // push to new array
+        // }
+
+        // console.log( hasUppercaseCase(password) );
 
         // edge cases:
         // check if it's null
@@ -81,8 +78,8 @@ var getPasswordsWithAtLeastTwoCapitalLetters = function() {
 
     };
 
-    console.log( passwordsWithAtLeastTwoCapitalLetters ); // see what's in passwordsWithAtLeastTwoCapitalLetters after check
-    console.log( passwordsWithAtLeastTwoCapitalLetters.length ); // how long is it?
+    // console.log( passwordsWithAtLeastTwoCapitalLetters ); // see what's in passwordsWithAtLeastTwoCapitalLetters after check
+    // console.log( passwordsWithAtLeastTwoCapitalLetters.length ); // how long is it?
     // the tests tell me that there should be 928 of them, out of 1000 in the data
 }
 
