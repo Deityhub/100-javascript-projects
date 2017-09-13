@@ -8,7 +8,7 @@
 
 
 // get the data object from the MOCK_DATA.json file
-// const data = require('../../data/MOCK_DATA.json');
+const data = require('../../data/MOCK_DATA.json');
 
 // console.log(data[3]); // references an item in the data array
 // we have to use the number here because these don't have names
@@ -31,19 +31,19 @@ function hasUppercaseCase(str) {
 
 }
 
-console.log( hasUppercaseCase('foo') );                 // null
-console.log( hasUppercaseCase('Foo') );                 // null
-console.log( hasUppercaseCase('BAR') );                 // match
-console.log( hasUppercaseCase('ihavenouppercase') );    // null
-console.log( hasUppercaseCase('ihaveOneuppercase') );   // null
-console.log( hasUppercaseCase('ihaveTWouppercase') );   // match
-console.log( hasUppercaseCase('ihaveFIVEUppercase') );  // match
-console.log( hasUppercaseCase('12345698') );            // null
-console.log( hasUppercaseCase('ABC131424') );           // match
-console.log( hasUppercaseCase('ABCdef938585') );        // match
-console.log( hasUppercaseCase('1837defo98258') );       // null
-console.log( hasUppercaseCase('858ABDJ2875') );         // match
-console.log( hasUppercaseCase('85!!!8ABDJ2875') );      // match
+// console.log( hasUppercaseCase('foo') );                 // null
+// console.log( hasUppercaseCase('Foo') );                 // null
+// console.log( hasUppercaseCase('BAR') );                 // match
+// console.log( hasUppercaseCase('ihavenouppercase') );    // null
+// console.log( hasUppercaseCase('ihaveOneuppercase') );   // null
+// console.log( hasUppercaseCase('ihaveTWouppercase') );   // match
+// console.log( hasUppercaseCase('ihaveFIVEUppercase') );  // match
+// console.log( hasUppercaseCase('12345698') );            // null
+// console.log( hasUppercaseCase('ABC131424') );           // match
+// console.log( hasUppercaseCase('ABCdef938585') );        // match
+// console.log( hasUppercaseCase('1837defo98258') );       // null
+// console.log( hasUppercaseCase('858ABDJ2875') );         // match
+// console.log( hasUppercaseCase('85!!!8ABDJ2875') );      // match
 
 
 var getPasswordsWithAtLeastTwoCapitalLetters = function() {
@@ -67,7 +67,10 @@ var getPasswordsWithAtLeastTwoCapitalLetters = function() {
         // remove it from the mock data obvs)
 
         // check to see if there are two
-        if ( hasUppercaseCase(password) === true) {
+        if ( hasUppercaseCase(password) === null) {
+            // console.log("i don't have uppercases, hasUppercaseCase returned null")
+        } else {
+            // console.log("i do have uppercases")
             passwordsWithAtLeastTwoCapitalLetters.push(password); // push to new array
         }
 
@@ -78,11 +81,11 @@ var getPasswordsWithAtLeastTwoCapitalLetters = function() {
 
     };
 
-    // console.log( passwordsWithAtLeastTwoCapitalLetters ); // see what's in passwordsWithAtLeastTwoCapitalLetters after check
-    // console.log( passwordsWithAtLeastTwoCapitalLetters.length ); // how long is it?
+    console.log( passwordsWithAtLeastTwoCapitalLetters ); // see what's in passwordsWithAtLeastTwoCapitalLetters after check
+    console.log( passwordsWithAtLeastTwoCapitalLetters.length ); // how long is it?
     // the tests tell me that there should be 928 of them, out of 1000 in the data
 }
 
-// getPasswordsWithAtLeastTwoCapitalLetters();
+getPasswordsWithAtLeastTwoCapitalLetters();
 
 module.exports = { getPasswordsWithAtLeastTwoCapitalLetters };
