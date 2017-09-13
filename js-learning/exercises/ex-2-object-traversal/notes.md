@@ -31,5 +31,8 @@ var square = function(n) {
 
 QUESTION: why do we normally default to `var foo = function` — to make it NOT possible to hoist?
 
-* note to self: mock data is an ARRAY of OBJECTS with another ARRAY (cities) in it with more OBJECTS (lat/lon) inside cities 
+* note to self: mock data is an ARRAY of OBJECTS with another ARRAY (cities) in it with more OBJECTS (lat/lon) inside cities
 * in looking at the mock data, i get the feeling that the fact that some of the lat/lon for cities is quoted as strings and some isn't is going to bite me in the butt later :grimacing:
+
+
+* regex 👿

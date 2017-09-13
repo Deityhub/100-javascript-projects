@@ -5,7 +5,7 @@ const T = require('./index');
 
 const passwordsWithAtLeastTwoCapitalLetters = T.getPasswordsWithAtLeastTwoCapitalLetters(data);
 
-// assert.equal(passwordsWithAtLeastTwoCapitalLetters.length, 928);
+assert.equal(passwordsWithAtLeastTwoCapitalLetters.length, 928);
 // assert.equal(passwordsWithAtLeastTwoCapitalLetters[3], 'qiTyYy');
 
 
