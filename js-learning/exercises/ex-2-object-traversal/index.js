@@ -46,38 +46,41 @@ getPasswordsWithAtLeastTwoCapitalLetters();
 /*
  * getPeopleWithAtLeastThreeCities
  *
- * A method that returns an array of names of the
+ * A method that returns an array *of names only* of the
  * people who have at least three cities.
  * The array should be alphabetically sorted on the last name.
  *
  */
 
-// check in the data object to see if cities is
-// greater than or equal to 3 in length
-// (also check if null?)
-// then push that item to a new array
-// then sort that new array alphabetically
-
 var getPeopleWithAtLeastThreeCities = function() {
 
-    var peopleWithAtLeastThreeCities = [];
+    var peopleWithAtLeastThreeCitiesObject = [];
 
     data.forEach(function(entry){
         var numCities = Object.keys(entry.cities).length;
         if (numCities >= 3) {
-            peopleWithAtLeastThreeCities.push(entry);
+            peopleWithAtLeastThreeCitiesObject.push(entry);
         }
     });
 
-    // take peopleWithAtLeastThreeCities array
+    // take peopleWithAtLeastThreeCitiesObject array
     // and sort it (in place) alphabetically by last name
-    peopleWithAtLeastThreeCities.sort(function(a, b){
+    peopleWithAtLeastThreeCitiesObject.sort(function(a, b){
         if(a.last < b.last) return -1;
         if(a.last > b.last) return 1;
         return 0;
     })
 
-    return peopleWithAtLeastThreeCities;
+    // reduce peopleWithAtLeastThreeCitiesObject
+    // start with new empty array which gets first+last as a string, no longer an object inside - but it's already sorted
+    // var peopleWithAtLeastThreeCities = [ 'Elyse Holladay', 'Ashley Watkins'];
+    var peopleWithAtLeastThreeCities = peopleWithAtLeastThreeCitiesObject.reduce(function(names, entry) {
+        names.push(entry.first + " " + entry.last);
+        return names;
+    }, []); // , []); is the initial value e.g. names = []; empty array
+
+    console.log(peopleWithAtLeastThreeCities[590]); // lol last = deKnevet
+    // return peopleWithAtLeastThreeCities;
 
 }
 
