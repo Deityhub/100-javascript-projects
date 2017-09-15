@@ -36,3 +36,9 @@ QUESTION: why do we normally default to `var foo = function` — to make it NOT 
 
 
 * regex 👿
+
+
+* edge cases:
+    * check if it's null
+    * works with umlauts, etc
+    * non-roman characters? yikes

@@ -26,89 +26,46 @@ const data = require('../../data/MOCK_DATA.json');
 // see link Ashley sent to use array indices
 
 function hasUppercaseCase(str) {
-    // return str.toLowerCase() != str;
-    // this is 💩, let's try match() instead
+    var regexp = /[A-Z].*[A-Z]/;
 
-    // var test = str; // test string
-    // var regexp = /^(?=.*[A-Z]{2,}).+$/; // this catches two or more caps TOGETHER, e.g. ABCdskfj but not AkjdC
-    // TODO thing to try: [A-Z].*[A-Z]
-
-    // return str.match(regexp); // will either be null or return the match
+    return str.match(regexp); // will either be null or return the match
     // for example [ 'ihaveFIVEUppercase', index: 0, input: 'ihaveFIVEUppercase' ]
-
-    var str = str;
-    var count = 0;
-    var pos = str.indexOf('e'); // works
-    // var pos = str.indexOf(/^A-Z/); // doesn't work
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search ???
-
-    while (pos !== -1) {
-      count++;
-      pos = str.indexOf('e', pos + 1); // works
-    //   pos = str.indexOf(/^A-Z/, pos + 1); // doesn't work
-    }
-
-    console.log(count);
+    // output is kinda weird sometimes but if it's not null it matches the check of having 2+ uppercase! yay!
 }
 
-hasUppercaseCase('foo');
-hasUppercaseCase('fooey');
-hasUppercaseCase('Foo');
-hasUppercaseCase('BAR');
-hasUppercaseCase('ihavenouppercase');
-hasUppercaseCase('ihaveOneuppercase');
-hasUppercaseCase('ihaveTWouppercase');
-hasUppercaseCase('ihaveFIVEUppercase');
-hasUppercaseCase('12345698');
-hasUppercaseCase('ABC131424');
-hasUppercaseCase('ABCdef938585');
-hasUppercaseCase('1837deeeeEeeeeEEEefo98258');
-hasUppercaseCase('858ABDJ2875');
-hasUppercaseCase('85!!!8ABDJ2875');
+// console.log( hasUppercaseCase('ihavenouppercase') ); // null
+// console.log( hasUppercaseCase('ihaveOneuppercase') ); // null
+// console.log( hasUppercaseCase('ihaveTWouppercase') ); // 'TW', index 5
+// console.log( hasUppercaseCase('ihaveTwouppercaseSeparated') ); // 'TwouppercaseS', index 5
+// console.log( hasUppercaseCase('ihaveFIVEUppercase') ); // 'FIVEU', index 5
+// console.log( hasUppercaseCase('Startwithoneuppercase') ); // null
+// console.log( hasUppercaseCase('STartwithtwouppercase') ); // 'ST', index 0
+// console.log( hasUppercaseCase('StartWithSeparated') ); // 'StartWithS', index 0 - weird output but works?
+// console.log( hasUppercaseCase('12345698') ); // null
+// console.log( hasUppercaseCase('12345698thenletters') ); // null
+// console.log( hasUppercaseCase('12345698thenCAPS') ); // 'CAPS', index 12
+
 
 
 var getPasswordsWithAtLeastTwoCapitalLetters = function() {
 
-    // make a new blank array of passwords w/ caps
-    const passwordsWithAtLeastTwoCapitalLetters = [];
+    // filter returns a new array, passwordsWithAtLeastTwoCapitalLetters
+    var passwordsWithAtLeastTwoCapitalLetters = data.filter(function(entry){
+        // console.log(entry.password);
+        return hasUppercaseCase(entry.password);
+        // ^ this returns me the entire entry, not just the PW
+        // which might be fine? the reqs say,
+        // "returns an array of passwords" so perhaps we need to
+        // only get those?
 
-    // use array.filter here instead?
-    // if you don't need to return a new array, use for each
-    // then you don't have to keep track of i
-    // array filter's check can be another function
-    for (i = 0; i < data.length; i++) {
-        // console.log(data[i].password); // will spit out a loooong list of pws!
-        var password = data[i].password;
+    });
 
-        console.log(password);
-
-
-        // if there are more than two, add it to that new array
-        // if there are less than two, discard it (but don't
-        // remove it from the mock data obvs)
-
-        // check to see if there are two
-        // if ( hasUppercaseCase(password) === null) {
-        //     // console.log("i don't have uppercases, hasUppercaseCase returned null")
-        // } else {
-        //     // console.log("i do have uppercases")
-        //     passwordsWithAtLeastTwoCapitalLetters.push(password); // push to new array
-        // }
-
-        // console.log( hasUppercaseCase(password) );
-
-        // edge cases:
-        // check if it's null
-        // works with umlauts, etc
-        // non-roman characters? yikes
-
-    };
-
+    return passwordsWithAtLeastTwoCapitalLetters;
     // console.log( passwordsWithAtLeastTwoCapitalLetters ); // see what's in passwordsWithAtLeastTwoCapitalLetters after check
     // console.log( passwordsWithAtLeastTwoCapitalLetters.length ); // how long is it?
     // the tests tell me that there should be 928 of them, out of 1000 in the data
 }
 
-// getPasswordsWithAtLeastTwoCapitalLetters();
+getPasswordsWithAtLeastTwoCapitalLetters();
 
 module.exports = { getPasswordsWithAtLeastTwoCapitalLetters };
