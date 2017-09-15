@@ -86,4 +86,9 @@ fruits.forEach(function(fruit){
 });
 ```
 
-this works - checking the array / object length 
+this works - checking the array / object length
+
+
+> A `getPeopleWithAtLeastThreeCities` method that returns an array of names
+
+**of names** — oh, very tricky! 
