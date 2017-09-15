@@ -1,3 +1,22 @@
+const data = require('../../data/MOCK_DATA.json');
+
+/*
+ * hasMultipleUppercase
+ *
+ * A function that checks to see if a string contains
+ * more than two uppercase characters.
+ * Should not match a string with only one uppercase.
+ * Should match a string with multiple uppercase chars
+ * together, or separate, e.g. `ABCdef` and `AbcDef`
+ *
+ * Returns either `null` or the matched set and index.
+ */
+function hasMultipleUppercase(str) {
+    var regexp = /[A-Z].*[A-Z]/;
+    return str.match(regexp);
+}
+
+
 /*
  * getPasswordsWithAtLeastTwoCapitalLetters
  *
@@ -5,16 +24,6 @@
  * _at least_ two capital letters. >=2 (greater than or equal to 2)
  *
  */
-
-
-// get the data object from the MOCK_DATA.json file
-const data = require('../../data/MOCK_DATA.json');
-
-function hasUppercaseCase(str) {
-    var regexp = /[A-Z].*[A-Z]/;
-    return str.match(regexp);
-}
-
 var getPasswordsWithAtLeastTwoCapitalLetters = function() {
 
     // create new array only of the passwords
@@ -25,11 +34,7 @@ var getPasswordsWithAtLeastTwoCapitalLetters = function() {
         passwords.push(entry.password)
     });
 
-    // passwordsWithAtLeastTwoCapitalLetters = passwords.filter(function(password){
-    //     return hasUppercaseCase(password);
-    // });
-
-    var passwordsWithAtLeastTwoCapitalLetters = passwords.filter((password) => hasUppercaseCase(password));
+    var passwordsWithAtLeastTwoCapitalLetters = passwords.filter((password) => hasMultipleUppercase(password));
 
 
     return passwordsWithAtLeastTwoCapitalLetters;
