@@ -25,9 +25,12 @@ var getPasswordsWithAtLeastTwoCapitalLetters = function() {
         passwords.push(entry.password)
     });
 
-    passwordsWithAtLeastTwoCapitalLetters = passwords.filter(function(password){
-        return hasUppercaseCase(password);
-    });
+    // passwordsWithAtLeastTwoCapitalLetters = passwords.filter(function(password){
+    //     return hasUppercaseCase(password);
+    // });
+
+    var passwordsWithAtLeastTwoCapitalLetters = passwords.filter((password) => hasUppercaseCase(password));
+
 
     return passwordsWithAtLeastTwoCapitalLetters;
 }
