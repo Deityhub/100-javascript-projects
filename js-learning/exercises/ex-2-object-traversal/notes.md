@@ -51,3 +51,39 @@ return str.match(regexp);
 will either be null or return the match
 for example [ 'ihaveFIVEUppercase', index: 0, input: 'ihaveFIVEUppercase' ]
 output is kinda weird sometimes but if it's not null it matches the check of having 2+ uppercase! yay!
+
+
+### part 2
+
+```
+var fruits = [
+    { type: 'apples', colors: [ 'red', 'green', 'pink' ] },
+    { type: 'oranges', color: 'orange' },
+    { type: 'bananas', color: 'yellow' }
+];
+
+fruits.forEach(function(fruit){
+    // can't do fruit.colors.length because you don't know which one to check since it's in a foreach
+    console.log(fruit.colors);
+});
+```
+
+accessing objects in an array... one day i will get this memorized 😬
+
+
+```
+
+var fruits = [
+    { type: 'apples', colors: [ 'red', 'green', 'pink' ] },
+    { type: 'oranges', colors: ['orange'] },
+    { type: 'bananas', colors: ['yellow', 'blue'], texture: 'mushy' }
+];
+
+// var number = Object.keys(fruits[2]).length; // 3
+fruits.forEach(function(fruit){
+    var number = Object.keys(fruit.colors).length;
+    console.log(number);
+});
+```
+
+this works - checking the array / object length 

@@ -42,4 +42,41 @@ var getPasswordsWithAtLeastTwoCapitalLetters = function() {
 
 getPasswordsWithAtLeastTwoCapitalLetters();
 
-module.exports = { getPasswordsWithAtLeastTwoCapitalLetters };
+
+/*
+ * getPeopleWithAtLeastThreeCities
+ *
+ * A method that returns an array of names of the
+ * people who have at least three cities.
+ * The array should be alphabetically sorted on the last name.
+ *
+ */
+
+// check in the data object to see if cities is
+// greater than or equal to 3 in length
+// (also check if null?)
+// then push that item to a new array
+// then sort that new array alphabetically
+
+var getPeopleWithAtLeastThreeCities = function() {
+
+    var peopleWithAtLeastThreeCities = [];
+
+    data.forEach(function(entry){
+        // var cities = Object.keys(entry.cities).length;
+        // console.log(cities);
+
+        var numCities = Object.keys(entry.cities).length;
+        if (numCities >= 3) {
+            peopleWithAtLeastThreeCities.push(entry);
+        }
+    });
+
+    // console.log(peopleWithAtLeastThreeCities);
+    return peopleWithAtLeastThreeCities;
+
+}
+
+getPeopleWithAtLeastThreeCities();
+
+module.exports = { getPasswordsWithAtLeastTwoCapitalLetters, getPeopleWithAtLeastThreeCities };
