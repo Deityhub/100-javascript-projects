@@ -19,12 +19,19 @@ const data = require('../../data/MOCK_DATA.json');
 // iterate over data until we reach the end (until iterator is = data.length)
 // console.log(data.length); // which is 1000
 
+// use charAt instead of breaking into an array
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt
+// then str.matches to see if it's a cap
+// then count up the total number of caps
+// see link Ashley sent to use array indices
+
 function hasUppercaseCase(str) {
     // return str.toLowerCase() != str;
     // this is 💩, let's try match() instead
 
     // var test = str; // test string
     // var regexp = /^(?=.*[A-Z]{2,}).+$/; // this catches two or more caps TOGETHER, e.g. ABCdskfj but not AkjdC
+    // TODO thing to try: [A-Z].*[A-Z]
 
     // return str.match(regexp); // will either be null or return the match
     // for example [ 'ihaveFIVEUppercase', index: 0, input: 'ihaveFIVEUppercase' ]
@@ -65,6 +72,10 @@ var getPasswordsWithAtLeastTwoCapitalLetters = function() {
     // make a new blank array of passwords w/ caps
     const passwordsWithAtLeastTwoCapitalLetters = [];
 
+    // use array.filter here instead?
+    // if you don't need to return a new array, use for each
+    // then you don't have to keep track of i
+    // array filter's check can be another function
     for (i = 0; i < data.length; i++) {
         // console.log(data[i].password); // will spit out a loooong list of pws!
         var password = data[i].password;
