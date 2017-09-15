@@ -63,16 +63,20 @@ var getPeopleWithAtLeastThreeCities = function() {
     var peopleWithAtLeastThreeCities = [];
 
     data.forEach(function(entry){
-        // var cities = Object.keys(entry.cities).length;
-        // console.log(cities);
-
         var numCities = Object.keys(entry.cities).length;
         if (numCities >= 3) {
             peopleWithAtLeastThreeCities.push(entry);
         }
     });
 
-    // console.log(peopleWithAtLeastThreeCities);
+    // take peopleWithAtLeastThreeCities array
+    // and sort it (in place) alphabetically by last name
+    peopleWithAtLeastThreeCities.sort(function(a, b){
+        if(a.last < b.last) return -1;
+        if(a.last > b.last) return 1;
+        return 0;
+    })
+
     return peopleWithAtLeastThreeCities;
 
 }
