@@ -42,3 +42,12 @@ QUESTION: why do we normally default to `var foo = function` — to make it NOT 
     * check if it's null
     * works with umlauts, etc
     * non-roman characters? yikes
+
+
+```
+var regexp = /[A-Z].*[A-Z]/;
+return str.match(regexp);
+```
+will either be null or return the match
+for example [ 'ihaveFIVEUppercase', index: 0, input: 'ihaveFIVEUppercase' ]
+output is kinda weird sometimes but if it's not null it matches the check of having 2+ uppercase! yay!
