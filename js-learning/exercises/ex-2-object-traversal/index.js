@@ -98,8 +98,8 @@ getPeopleWithAtLeastThreeCities();
 var getSouthernHemispherePeople = function() {
     // check to see if lat < 0 on each data[i].lat
     // use parseFloat to always cast to a number vs a string - do i need to do this?
-    var southernHemispherePeople = [];
-    data.forEach(function(entry){
+    // var southernHemispherePeople = [];
+    // data.forEach(function(entry) {
         // if the current lat is less than 0
         // add the id of that entry to the new array
         // if it is NOT, check entry.cities[i].lat < 0
@@ -108,20 +108,20 @@ var getSouthernHemispherePeople = function() {
         // if more than one we don't want to add to the array twice
         // so the add will have to be outside of that if
 
-        latAsNum = parseFloat(entry.lat);
-        if (latAsNum < 0) {
-            // console.log("latitude " + latAsNum + " and id is " + entry.id)
-            southernHemispherePeople.push(entry.id);
+        // latAsNum = parseFloat(entry.lat);
+        // if (latAsNum < 0) {
+        //     // console.log("latitude " + latAsNum + " and id is " + entry.id)
+        //     southernHemispherePeople.push(entry.id);
+        // }
+    // });
+
+    var southernHemispherePeople = [];
+
+    data.forEach((entry) => {
+
+        var southernHemisphereCitiesPerPerson = entry.cities.filter((city) => city.lat < 0 );
+        // console.log(southernHemisphereCitiesPerPerson);
+        if (southernHemisphereCitiesPerPerson > 0) {
+            console.log(southernHemisphereCitiesPerPerson.length);
         }
-    });
-
-    console.log(southernHemispherePeople);
-    // console.log(southernHemispherePeople.length);
-
-    // console.log(southernHemispherePeople);
-    // return southernHemispherePeople;
-}
-
-getSouthernHemispherePeople();
-
-module.exports = { getPasswordsWithAtLeastTwoCapitalLetters, getPeopleWithAtLeastThreeCities, getSouthernHemispherePeople };
+        // this gets us an array
