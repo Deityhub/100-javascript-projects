@@ -120,12 +120,21 @@ var getSouthernHemispherePeople = function() {
     data.forEach((entry) => {
 
         var southernHemisphereCitiesPerPerson = entry.cities.filter((city) => city.lat < 0 );
+        // var southernHemisphereCitiesPerPerson = entry.cities.filter(function(city) {
+        //     return city.lat < 0;
+        // })
         // console.log(southernHemisphereCitiesPerPerson);
-        if (southernHemisphereCitiesPerPerson > 0) {
-            console.log(southernHemisphereCitiesPerPerson.length);
+
+        // we know the number of cities in the southern hem per person
+        // southernHemisphereCitiesPerPerson = an array with some length
+        if (southernHemisphereCitiesPerPerson.length > 0) {
+            southernHemispherePeople.push(entry.id)
         }
-        // this gets us an array
+
     });
+    console.log(southernHemispherePeople.length);
 };
+
+getSouthernHemispherePeople();
 
 module.exports = { getPasswordsWithAtLeastTwoCapitalLetters, getPeopleWithAtLeastThreeCities, getSouthernHemispherePeople }
