@@ -125,3 +125,7 @@ var getSouthernHemispherePeople = function() {
             console.log(southernHemisphereCitiesPerPerson.length);
         }
         // this gets us an array
+    });
+};
+
+module.exports = { getPasswordsWithAtLeastTwoCapitalLetters, getPeopleWithAtLeastThreeCities, getSouthernHemispherePeople }
