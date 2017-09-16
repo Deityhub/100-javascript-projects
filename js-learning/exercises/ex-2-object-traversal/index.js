@@ -96,7 +96,19 @@ getPeopleWithAtLeastThreeCities();
  */
 
 var getSouthernHemispherePeople = function() {
-    
+    // check to see if lat < 0 on each data[i].lat
+    // use parseFloat to always cast to a number vs a string - do i need to do this?
+    var southernHemispherePeople = [];
+    data.forEach(function(entry){
+        if (entry.lat < 0) { // if the current lat is less than 0
+            // OR if entry.cities[i].lat < 0
+            // console.log(entry.lat)
+            // southernHemispherePeople.push(entry);
+        }
+    });
+
+    // console.log(southernHemispherePeople);
+    // return southernHemispherePeople;
 }
 
 getSouthernHemispherePeople();
