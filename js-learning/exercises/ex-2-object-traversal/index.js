@@ -100,12 +100,23 @@ var getSouthernHemispherePeople = function() {
     // use parseFloat to always cast to a number vs a string - do i need to do this?
     var southernHemispherePeople = [];
     data.forEach(function(entry){
-        if (entry.lat < 0) { // if the current lat is less than 0
-            // OR if entry.cities[i].lat < 0
-            // console.log(entry.lat)
-            // southernHemispherePeople.push(entry);
+        // if the current lat is less than 0
+        // add the id of that entry to the new array
+        // if it is NOT, check entry.cities[i].lat < 0
+        // if one of them is, add that id to the new array
+        // if it's not, do nothing / go to next
+        // if more than one we don't want to add to the array twice
+        // so the add will have to be outside of that if
+
+        latAsNum = parseFloat(entry.lat);
+        if (latAsNum < 0) {
+            // console.log("latitude " + latAsNum + " and id is " + entry.id)
+            southernHemispherePeople.push(entry.id);
         }
     });
+
+    console.log(southernHemispherePeople);
+    // console.log(southernHemispherePeople.length);
 
     // console.log(southernHemispherePeople);
     // return southernHemispherePeople;
