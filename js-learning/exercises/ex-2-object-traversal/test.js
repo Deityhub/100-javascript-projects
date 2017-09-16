@@ -15,8 +15,8 @@ assert.equal(peopleWithAtLeastThreeCities[0], 'Lusa Abramovicz');
 assert.equal(peopleWithAtLeastThreeCities[peopleWithAtLeastThreeCities.length - 1], 'Ajay Zuppa');
 
 
-// const southernHemispherePeople = T.getSouthernHemispherePeople(data);
-//
-// assert.equal(southernHemispherePeople.length, 59);
+const southernHemispherePeople = T.getSouthernHemispherePeople(data);
+
+assert.equal(southernHemispherePeople.length, 59);
 
 // console.log('tests ok');

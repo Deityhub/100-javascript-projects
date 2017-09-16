@@ -85,4 +85,20 @@ var getPeopleWithAtLeastThreeCities = function() {
 
 getPeopleWithAtLeastThreeCities();
 
-module.exports = { getPasswordsWithAtLeastTwoCapitalLetters, getPeopleWithAtLeastThreeCities };
+
+/*
+ * getSouthernHemispherePeople
+ *
+ * method that returns an array of id's of people
+ * who live or have lived in the southern hemisphere
+ * (latitude less than 0).
+ *
+ */
+
+var getSouthernHemispherePeople = function() {
+    
+}
+
+getSouthernHemispherePeople();
+
+module.exports = { getPasswordsWithAtLeastTwoCapitalLetters, getPeopleWithAtLeastThreeCities, getSouthernHemispherePeople };
