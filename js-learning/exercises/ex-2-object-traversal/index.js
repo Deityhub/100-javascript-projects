@@ -66,8 +66,8 @@ var getPeopleWithAtLeastThreeCities = function() {
     // take peopleWithAtLeastThreeCitiesObject array
     // and sort it (in place) alphabetically by last name
     peopleWithAtLeastThreeCitiesObject.sort(function(a, b){
-        if(a.last < b.last) return -1;
-        if(a.last > b.last) return 1;
+        if(a.last.toLowerCase() < b.last.toLowerCase()) return -1;
+        if(a.last.toLowerCase() > b.last.toLowerCase()) return 1;
         return 0;
     })
 
@@ -79,8 +79,7 @@ var getPeopleWithAtLeastThreeCities = function() {
         return names;
     }, []); // , []); is the initial value e.g. names = []; empty array
 
-    console.log(peopleWithAtLeastThreeCities[590]); // lol last = deKnevet
-    // return peopleWithAtLeastThreeCities;
+    return peopleWithAtLeastThreeCities;
 
 }
 
