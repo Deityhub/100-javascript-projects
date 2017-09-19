@@ -118,21 +118,21 @@ var getSouthernHemispherePeople = function() {
     var southernHemispherePeople = [];
 
     data.forEach((entry) => {
-
-        var southernHemisphereCitiesPerPerson = entry.cities.filter((city) => city.lat < 0 );
-        // var southernHemisphereCitiesPerPerson = entry.cities.filter(function(city) {
-        //     return city.lat < 0;
-        // })
-        // console.log(southernHemisphereCitiesPerPerson);
-
-        // we know the number of cities in the southern hem per person
-        // southernHemisphereCitiesPerPerson = an array with some length
-        if (southernHemisphereCitiesPerPerson.length > 0) {
-            southernHemispherePeople.push(entry.id)
+        if (entry.lat < 0) {
+            southernHemispherePeople.push(entry.lat);
+            console.log(entry.lat);
         }
 
+
+        // var southernHemisphereCitiesPerPerson = entry.cities.filter((city) => city.lat < 0 );
+        // we know the number of cities in the southern hem per person
+        // southernHemisphereCitiesPerPerson = an array with some length
+        // if (southernHemisphereCitiesPerPerson.length > 0) {
+        //     southernHemispherePeople.push(entry.id)
+        // }
+
     });
-    console.log(southernHemispherePeople.length);
+    console.log("number of entries with a latitude less than 0 is " + southernHemispherePeople.length);
 };
 
 getSouthernHemispherePeople();

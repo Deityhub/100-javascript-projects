@@ -91,4 +91,7 @@ this works - checking the array / object length
 
 > A `getPeopleWithAtLeastThreeCities` method that returns an array of names
 
-**of names** — oh, very tricky! 
+**of names** — oh, very tricky!
+
+
+see: https://danmartensen.svbtle.com/javascripts-map-reduce-and-filter 
