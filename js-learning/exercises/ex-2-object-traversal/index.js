@@ -26,21 +26,18 @@ function hasMultipleUppercase(str) {
  */
 var getPasswordsWithAtLeastTwoCapitalLetters = function() {
 
-    // create new array only of the passwords
-    // just using filter below returns the entire
-    // object, which fails the second test assertion
-    var passwords = [];
-    data.forEach(function(entry){
-        passwords.push(entry.password)
-    });
-
-    var passwordsWithAtLeastTwoCapitalLetters = passwords.filter((password) => hasMultipleUppercase(password));
-
+    var passwordsWithAtLeastTwoCapitalLetters = data.reduce(function(passwords, entry) {
+        if (hasMultipleUppercase(entry.password) !== null) {
+            passwords.push(entry.password);
+        }
+        return passwords;
+    }, []);
 
     return passwordsWithAtLeastTwoCapitalLetters;
 }
 
 getPasswordsWithAtLeastTwoCapitalLetters();
+
 
 
 /*
@@ -132,9 +129,9 @@ var getSouthernHemispherePeople = function() {
         // }
 
     });
-    console.log("number of entries with a latitude less than 0 is " + southernHemispherePeople.length);
+    // console.log("number of entries with a latitude less than 0 is " + southernHemispherePeople.length);
 };
 
-getSouthernHemispherePeople();
+// getSouthernHemispherePeople();
 
 module.exports = { getPasswordsWithAtLeastTwoCapitalLetters, getPeopleWithAtLeastThreeCities, getSouthernHemispherePeople }

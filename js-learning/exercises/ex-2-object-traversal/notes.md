@@ -94,4 +94,13 @@ this works - checking the array / object length
 **of names** — oh, very tricky!
 
 
-see: https://danmartensen.svbtle.com/javascripts-map-reduce-and-filter 
+// map or filter = something w/ every item in array
+// reduce = you want back only a subset
+
+see: https://danmartensen.svbtle.com/javascripts-map-reduce-and-filter
+
+
+### TODO
+
+* in getPasswords, investigate using `reduce` instead of two steps - making a passwords array and then using filter. ✅
+* in ThreeCities, look at using `map`
