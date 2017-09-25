@@ -93,45 +93,30 @@ getPeopleWithAtLeastThreeCities();
  */
 
 var getSouthernHemispherePeople = function() {
-    // check to see if lat < 0 on each data[i].lat
-    // use parseFloat to always cast to a number vs a string - do i need to do this?
-    // var southernHemispherePeople = [];
-    // data.forEach(function(entry) {
-        // if the current lat is less than 0
-        // add the id of that entry to the new array
-        // if it is NOT, check entry.cities[i].lat < 0
-        // if one of them is, add that id to the new array
-        // if it's not, do nothing / go to next
-        // if more than one we don't want to add to the array twice
-        // so the add will have to be outside of that if
-
-        // latAsNum = parseFloat(entry.lat);
-        // if (latAsNum < 0) {
-        //     // console.log("latitude " + latAsNum + " and id is " + entry.id)
-        //     southernHemispherePeople.push(entry.id);
-        // }
-    // });
 
     var southernHemispherePeople = [];
 
     data.forEach((entry) => {
+        // if the current lat is less than 0
         if (entry.lat < 0) {
-            southernHemispherePeople.push(entry.lat);
-            console.log(entry.lat);
+            // add the id of that entry to the new array
+            southernHemispherePeople.push(entry.id);
+        } else {
+            // if it is NOT, filter out any entries whose cities object has a city with a lat greater than 0
+            var southernHemisphereCitiesPerPerson = entry.cities.filter((city) => city.lat < 0 );
+            // if one of them is, add that id to the new array
+            if (southernHemisphereCitiesPerPerson.length > 0) {
+                southernHemispherePeople.push(entry.id)
+            }
         }
-
-
-        // var southernHemisphereCitiesPerPerson = entry.cities.filter((city) => city.lat < 0 );
-        // we know the number of cities in the southern hem per person
-        // southernHemisphereCitiesPerPerson = an array with some length
-        // if (southernHemisphereCitiesPerPerson.length > 0) {
-        //     southernHemispherePeople.push(entry.id)
-        // }
-
+         // if it's not in either of those, do nothing
     });
-    // console.log("number of entries with a latitude less than 0 is " + southernHemispherePeople.length);
-};
 
-// getSouthernHemispherePeople();
+    //console.log("number of entries with a latitude less than 0 is " + southernHemispherePeople.length); // should be 589
+
+    return southernHemispherePeople;
+}
+
+getSouthernHemispherePeople();
 
 module.exports = { getPasswordsWithAtLeastTwoCapitalLetters, getPeopleWithAtLeastThreeCities, getSouthernHemispherePeople }
