@@ -1,5 +1,3 @@
-const arrays = require('../../data/arraysOfArrays.js');
-
 /*
  * sum
  *
@@ -43,6 +41,4 @@ const sum = function(param) {
     return total;
 }
 
-console.log( sum(arrays[0]) );
-
-module.exports = { sum };
+module.exports = sum;
