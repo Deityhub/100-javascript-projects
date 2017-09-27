@@ -1,3 +1,5 @@
+const arrays = require('../../data/arraysOfArrays');
+
 /*
  * sum
  *
@@ -9,7 +11,7 @@
 
 // start with simple array
 // const foo = [ 1, 2, 3, 4 ]; // 10
-// const foo = [ 1, [ 2, 3, 4, 5, [ 6, 7, 8 ] ] ]; // 36
+const foo = [ 1, [ 2, 3, 4, 5, [ 6, 7, 8 ] ] ]; // 36
 // can we use map here? do something to every item but get back a single number
 // better: reduce - get a single value back, cumulatively
 
@@ -19,10 +21,10 @@
 // then go to the next array[N]
 // until array[N] > array[0].length
 
+
 var total = 0;
 
 const sum = function(param) {
-
     param.forEach((elem) => {
         // console.log("elem is " + elem + " — isArray(elem) is " + Array.isArray(elem));
 
@@ -38,7 +40,17 @@ const sum = function(param) {
         }
     });
 
-    return total;
+    var foo = total;
+    return foo;
 }
+
+console.log("test arrays[0]: should be 36, is: " + sum(arrays[0]) ); // 36
+// console.log("the total is " + total);
+// console.log("test arrays[1]: should be 72, is: " +  sum(arrays[1]) ); // 72
+// console.log("the total is " + total);
+// console.log("test arrays[2]: should be 1, is: " +  sum(arrays[2]) ); // 1
+// console.log("the total is " + total);
+// console.log("test arrays[3]: should be 3, is: " +  sum(arrays[3]) ); // 3
+// console.log("the total is " + total);
 
 module.exports = sum;
