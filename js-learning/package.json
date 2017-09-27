@@ -8,10 +8,17 @@
   },
   "author": "Rebecca Murphey <rebeccam@indeed.com>",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@indeed/eslint-plugin-indeed": "^5.0.0",
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-plugin-no-loops": "^0.3.0",
+    "eslint-plugin-react": "^6.10.3"
   },
   "scripts": {
+    "lint": "eslint exercises --cache --quiet",
+    "lint-fix": "eslint exercises --fix",
+    "lint-warn": "eslint exercises --cache"
   }
 }
