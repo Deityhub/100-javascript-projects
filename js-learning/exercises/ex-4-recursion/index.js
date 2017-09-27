@@ -1,4 +1,4 @@
-const data = require('../../data/arraysOfArrays.js');
+const arrays = require('../../data/arraysOfArrays.js');
 
 /*
  * sum
@@ -21,30 +21,28 @@ const data = require('../../data/arraysOfArrays.js');
 // then go to the next array[N]
 // until array[N] > array[0].length
 
-var sum = 0;
+var total = 0;
 
-const calculateSum = function(param) {
+const sum = function(param) {
 
     param.forEach((elem) => {
-        console.log("elem is " + elem + " — isArray(elem) is " + Array.isArray(elem));
+        // console.log("elem is " + elem + " — isArray(elem) is " + Array.isArray(elem));
 
         // check to see if elem (the item being iterated over) is an array
         if(Array.isArray(elem) === false) {
-            sum += elem;
-            console.log("now the sum is " + sum);
-            // if it IS NOT: add it to the accumulator (sum)
+            total += elem;
+            // console.log("now the total is " + total);
+            // if it IS NOT: add it to the accumulator (total)
             // if it IS: call function recursively to see if elem is an array...
-            // outside of the for each!
         } else {
-            console.log("i must be an array");
-            calculateSum(elem);
+            // console.log("i must be an array");
+            sum(elem);
         }
     });
 
-    return sum;
+    return total;
 }
 
-// console.log(calculateSum());
-calculateSum(data);
+console.log( sum(arrays[0]) );
 
-module.exports = { calculateSum };
+module.exports = { sum };
