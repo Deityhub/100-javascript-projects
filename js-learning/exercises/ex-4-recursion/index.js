@@ -1,5 +1,4 @@
-const arrays = require('../../data/arraysOfArrays');
-
+// const arrays = require('../../data/arraysOfArrays');
 /*
  * sum
  *
@@ -11,7 +10,7 @@ const arrays = require('../../data/arraysOfArrays');
 
 // start with simple array
 // const foo = [ 1, 2, 3, 4 ]; // 10
-const foo = [ 1, [ 2, 3, 4, 5, [ 6, 7, 8 ] ] ]; // 36
+// const foo = [ 1, [ 2, 3, 4, 5, [ 6, 7, 8 ] ] ]; // 36
 // can we use map here? do something to every item but get back a single number
 // better: reduce - get a single value back, cumulatively
 
@@ -22,14 +21,14 @@ const foo = [ 1, [ 2, 3, 4, 5, [ 6, 7, 8 ] ] ]; // 36
 // until array[N] > array[0].length
 
 
-var total = 0;
+var total = 0; // eslint-disable-line no-var
 
 const sum = function(param) {
     param.forEach((elem) => {
         // console.log("elem is " + elem + " — isArray(elem) is " + Array.isArray(elem));
 
         // check to see if elem (the item being iterated over) is an array
-        if(Array.isArray(elem) === false) {
+        if (Array.isArray(elem) === false) {
             total += elem;
             // console.log("now the total is " + total);
             // if it IS NOT: add it to the accumulator (total)
@@ -40,11 +39,10 @@ const sum = function(param) {
         }
     });
 
-    var foo = total;
-    return foo;
-}
+    return total;
+};
 
-console.log("test arrays[0]: should be 36, is: " + sum(arrays[0]) ); // 36
+// console.log("test arrays[0]: should be 36, is: " + sum(arrays[0]) ); // 36
 // console.log("the total is " + total);
 // console.log("test arrays[1]: should be 72, is: " +  sum(arrays[1]) ); // 72
 // console.log("the total is " + total);
