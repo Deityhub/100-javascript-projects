@@ -2,8 +2,8 @@
 
 * add ESLint to the repo ✅
 * set up eslint as "recommended" config option, path `exercises/`, defaults elsewhere  ✅
-* run linting in exercises/ and fix errors
-* fix/silence no-console
+* run linting in exercises/ and fix errors ✅
+* fix/silence no-console ✅
 
 
 ## Notes
@@ -14,8 +14,8 @@ pm WARN @indeed/eslint-plugin-indeed@5.0.0 requires a peer of eslint@4.x but non
 npm WARN @indeed/eslint-plugin-indeed@5.0.0 requires a peer of eslint-plugin-react@7.x but none was installed.
 
 
-npm run lint: Run the linter, using cached results for unmodified files, and reporting only errors.
+### Errors
 
-npm run lint-fix: Run the linter, auto-fixing any errors that ESLint knows how to fix.
+Interesting that running `lint-fix` would change my functions to arrow functions! var / const didn't surprise me nearly as much as that.
 
-npm run lint-warn: Run the linter, using cached results for unmodified files, and reporting both errors and warnings.
+It also added `names.push(`${entry.first } ${ entry.last}`);` the backticks in this push. Why?

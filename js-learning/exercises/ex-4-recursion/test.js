@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const assert = require('assert');
 
 const arrays = require('../../data/arraysOfArrays');

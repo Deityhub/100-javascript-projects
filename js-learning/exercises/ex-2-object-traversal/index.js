@@ -12,7 +12,8 @@ const data = require('../../data/MOCK_DATA.json');
  * Returns either `null` or the matched set and index.
  */
 function hasMultipleUppercase(str) {
-    var regexp = /[A-Z].*[A-Z]/;
+    const regexp = /[A-Z].*[A-Z]/;
+
     return str.match(regexp);
 }
 
@@ -24,20 +25,19 @@ function hasMultipleUppercase(str) {
  * _at least_ two capital letters. >=2 (greater than or equal to 2)
  *
  */
-var getPasswordsWithAtLeastTwoCapitalLetters = function() {
-
-    var passwordsWithAtLeastTwoCapitalLetters = data.reduce(function(passwords, entry) {
+const getPasswordsWithAtLeastTwoCapitalLetters = function() {
+    const passwordsWithAtLeastTwoCapitalLetters = data.reduce((passwords, entry) => {
         if (hasMultipleUppercase(entry.password) !== null) {
             passwords.push(entry.password);
         }
+
         return passwords;
     }, []);
 
     return passwordsWithAtLeastTwoCapitalLetters;
-}
+};
 
 getPasswordsWithAtLeastTwoCapitalLetters();
-
 
 
 /*
@@ -49,12 +49,11 @@ getPasswordsWithAtLeastTwoCapitalLetters();
  *
  */
 
-var getPeopleWithAtLeastThreeCities = function() {
+const getPeopleWithAtLeastThreeCities = function() {
+    const peopleWithAtLeastThreeCitiesObject = [];
 
-    var peopleWithAtLeastThreeCitiesObject = [];
-
-    data.forEach(function(entry){
-        var numCities = Object.keys(entry.cities).length;
+    data.forEach((entry) => {
+        const numCities = Object.keys(entry.cities).length;
         if (numCities >= 3) {
             peopleWithAtLeastThreeCitiesObject.push(entry);
         }
@@ -62,23 +61,24 @@ var getPeopleWithAtLeastThreeCities = function() {
 
     // take peopleWithAtLeastThreeCitiesObject array
     // and sort it (in place) alphabetically by last name
-    peopleWithAtLeastThreeCitiesObject.sort(function(a, b){
-        if(a.last.toLowerCase() < b.last.toLowerCase()) return -1;
-        if(a.last.toLowerCase() > b.last.toLowerCase()) return 1;
+    peopleWithAtLeastThreeCitiesObject.sort((a, b) => {
+        if (a.last.toLowerCase() < b.last.toLowerCase()) return -1;
+        if (a.last.toLowerCase() > b.last.toLowerCase()) return 1;
+
         return 0;
-    })
+    });
 
     // reduce peopleWithAtLeastThreeCitiesObject
     // start with new empty array which gets first+last as a string, no longer an object inside - but it's already sorted
     // var peopleWithAtLeastThreeCities = [ 'Elyse Holladay', 'Ashley Watkins'];
-    var peopleWithAtLeastThreeCities = peopleWithAtLeastThreeCitiesObject.reduce(function(names, entry) {
-        names.push(entry.first + " " + entry.last);
+    const peopleWithAtLeastThreeCities = peopleWithAtLeastThreeCitiesObject.reduce((names, entry) => {
+        names.push(`${entry.first } ${ entry.last}`);
+
         return names;
     }, []); // , []); is the initial value e.g. names = []; empty array
 
     return peopleWithAtLeastThreeCities;
-
-}
+};
 
 getPeopleWithAtLeastThreeCities();
 
@@ -92,9 +92,8 @@ getPeopleWithAtLeastThreeCities();
  *
  */
 
-var getSouthernHemispherePeople = function() {
-
-    var southernHemispherePeople = [];
+const getSouthernHemispherePeople = function() {
+    const southernHemispherePeople = [];
 
     data.forEach((entry) => {
         // if the current lat is less than 0
@@ -103,20 +102,20 @@ var getSouthernHemispherePeople = function() {
             southernHemispherePeople.push(entry.id);
         } else {
             // if it is NOT, filter out any entries whose cities object has a city with a lat greater than 0
-            var southernHemisphereCitiesPerPerson = entry.cities.filter((city) => city.lat < 0 );
+            const southernHemisphereCitiesPerPerson = entry.cities.filter((city) => city.lat < 0);
             // if one of them is, add that id to the new array
             if (southernHemisphereCitiesPerPerson.length > 0) {
-                southernHemispherePeople.push(entry.id)
+                southernHemispherePeople.push(entry.id);
             }
         }
-         // if it's not in either of those, do nothing
+        // if it's not in either of those, do nothing
     });
 
     //console.log("number of entries with a latitude less than 0 is " + southernHemispherePeople.length); // should be 589
 
     return southernHemispherePeople;
-}
+};
 
 getSouthernHemispherePeople();
 
-module.exports = { getPasswordsWithAtLeastTwoCapitalLetters, getPeopleWithAtLeastThreeCities, getSouthernHemispherePeople }
+module.exports = { getPasswordsWithAtLeastTwoCapitalLetters, getPeopleWithAtLeastThreeCities, getSouthernHemispherePeople };
