@@ -1,4 +1,4 @@
-// const arrays = require('../../data/arraysOfArrays');
+const arrays = require('../../data/arraysOfArrays');
 /*
  * sum
  *
@@ -20,10 +20,8 @@
 // then go to the next array[N]
 // until array[N] > array[0].length
 
-
-var total = 0; // eslint-disable-line no-var
-
 const sum = function(param) {
+    var total = 0;
     param.forEach((elem) => {
         // console.log("elem is " + elem + " — isArray(elem) is " + Array.isArray(elem));
 
@@ -35,20 +33,17 @@ const sum = function(param) {
             // if it IS: call function recursively to see if elem is an array...
         } else {
             // console.log("i must be an array");
-            sum(elem);
+            total += sum(elem);
         }
     });
 
     return total;
 };
 
-// console.log("test arrays[0]: should be 36, is: " + sum(arrays[0]) ); // 36
-// console.log("the total is " + total);
-// console.log("test arrays[1]: should be 72, is: " +  sum(arrays[1]) ); // 72
-// console.log("the total is " + total);
-// console.log("test arrays[2]: should be 1, is: " +  sum(arrays[2]) ); // 1
-// console.log("the total is " + total);
-// console.log("test arrays[3]: should be 3, is: " +  sum(arrays[3]) ); // 3
-// console.log("the total is " + total);
+console.log(sum(arrays) ); // 36
+console.log("test arrays[0]: should be 36, is: " + sum(arrays[0]) ); // 36
+console.log("test arrays[1]: should be 72, is: " +  sum(arrays[1]) ); // 72
+console.log("test arrays[2]: should be 1, is: " +  sum(arrays[2]) ); // 1
+console.log("test arrays[3]: should be 3, is: " +  sum(arrays[3]) ); // 3
 
 module.exports = sum;
