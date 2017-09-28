@@ -107,6 +107,8 @@ const getSouthernHemispherePeople = function() {
             if (southernHemisphereCitiesPerPerson.length > 0) {
                 southernHemispherePeople.push(entry.id);
             }
+            // combine 105-107 to use Array.some()
+            // const sHCpP = entry.cities.some()
         }
         // if it's not in either of those, do nothing
     });
