@@ -10,22 +10,37 @@
 // `onIncrement`: a function to call with the current counter value each time the counter is incremented
 // `callback`: a function to call after the counter reaches its end value
 
-const testobj = { start: 1, end: 10 }
-
 const counter = function (object) {
-    // foo is 0
-    // set foo to value of start from obj
-    // add 1 to foo until it is = to end
-    var foo = 0;
-    console.log(foo);
-    while (foo <= testobj.end) {
-        console.log(foo);
-        // here, use settimeout to wait the delay time before incrementing
-        foo += 1; // instead of this, call onIncrement 
-    }
-    // ...callback? 😬
+    // set num to value of start from obj
+    // add 1 to num until it is = to end
+    var num = object.start;
+    const increment = function() {
+        num += 1;
+        onIncrement(num);
+        // call whatever as many times as start-end recursively
+        // if num <= end
+        increment(num);
+    };
+    setTimeout(increment, object.delay); // every 100ms
+    object.callback();
 }
 
-counter(testobj);
-
 module.exports = counter;
+
+
+// user clicked
+// doing things
+fetch('/random-url', () => {
+    // handle response
+})
+
+// I don't have access to the response because it's not back yet
+
+// console.log(num);
+// while (num <= object.end) {
+//     // after the delay, increment num+=1
+//     // and call onInc(num)
+//     num += 1;
+//     object.onIncrement(num);
+// }
+//     // settimeout with a delay of 100
