@@ -14,6 +14,7 @@ const counter = function(object) {
     // set num to value of start from obj
     // add 1 to num until it is = to end
     var num = object.start;
+    console.log(num);
 
     const increment = function() {
         num += 1;
