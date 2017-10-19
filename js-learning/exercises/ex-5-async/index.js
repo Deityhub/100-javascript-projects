@@ -11,28 +11,21 @@
 // `callback`: a function to call after the counter reaches its end value
 
 const counter = function(object) {
-    // set num to value of start from obj
-    // add 1 to num until it is = to end
     var num = object.start;
     console.log(`the num is equal to obj.start ${object.start} and is ${num}.`);
 
-    // const increment = function() {
+    const increment = function() {
         // if (num < object.end) {
-            // num += 1;
-            // console.log(`the num is now ${num}.`);
-            // object.onIncrement(num);
-            // object.onIncrement(num++);
+            num += 1;
+            console.log(`the num is now ${num}.`);
+            object.onIncrement(num);
+            setTimeout(increment, object.delay);
         // }
-        // return num;
-    // };
-
-    if (num < end) {
-        object.onIncrement(num++);
-    }
-
-    setTimeout(increment, object.delay);
-    
-    // object.callback();
+        if (num > object.end) {
+            object.callback();
+        }
+    };
+    increment();
 }
 
 
