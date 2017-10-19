@@ -14,25 +14,25 @@ const counter = function(object) {
     // set num to value of start from obj
     // add 1 to num until it is = to end
     var num = object.start;
-    console.log(num);
+    console.log(`the num is equal to obj.start ${object.start} and is ${num}.`);
 
-    const increment = function() {
-        // num += 1;
+    // const increment = function() {
+        // if (num < object.end) {
+            // num += 1;
+            // console.log(`the num is now ${num}.`);
+            // object.onIncrement(num);
+            // object.onIncrement(num++);
+        // }
+        // return num;
+    // };
+
+    if (num < end) {
         object.onIncrement(num++);
-        // call increment recursively as long as num is less than end
-        if (num <= object.end) {
-            increment(num);
-        }
-    };
-    // alternatively, call increment until num > end ?
+    }
 
-    // this seems messy - i was expect setTimeout to call increment but that never worked
-    // it doesn’t seem that setTimeout knows about increment, it just knows not to call the callback until the delay has passed, so it works but maybe on accident :P
-    setTimeout(function () {
-        object.callback();
-    }, object.delay); // every 100ms
+    setTimeout(increment, object.delay);
     
-    increment(num);
+    // object.callback();
 }
 
 
