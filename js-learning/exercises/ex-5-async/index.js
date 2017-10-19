@@ -28,8 +28,11 @@ const counter = function(object) {
 
     setTimeout(function () {
         increment(num);
-        object.callback();
     }, object.delay); // every 100ms
+
+    if (num > end) {
+        object.callback();
+    }
 }
 
 
