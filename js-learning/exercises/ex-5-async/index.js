@@ -21,7 +21,7 @@ const counter = function(object) {
             object.onIncrement(num);
             setTimeout(increment, object.delay);
         // }
-        if (num > object.end) {
+        if (num = object.end) {
             object.callback();
         }
     };
