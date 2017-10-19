@@ -15,16 +15,16 @@ const counter = function(object) {
     console.log(`the num is equal to obj.start ${object.start} and is ${num}.`);
 
     const increment = function() {
-        // if (num < object.end) {
+        if (num > object.end) {
+            object.callback();
+        } else {
             num += 1;
             console.log(`the num is now ${num}.`);
             object.onIncrement(num);
             setTimeout(increment, object.delay);
-        // }
-        if (num = object.end) {
-            object.callback();
         }
     };
+
     increment();
 }
 

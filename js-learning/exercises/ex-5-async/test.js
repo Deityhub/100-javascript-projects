@@ -27,10 +27,10 @@ counter({
         nums.push(num);
     },
     callback: () => {
-        console.log(`array nums contains ${nums}.`);
-        console.log(`delay is ${delays}.`);
         assert.equal(nums.length, 10);
         assert.equal(delays.filter((d) => d === 100).length, delays.length);
+        console.log(`array nums contains ${nums} and length is ${nums.length}.`);
+        console.log(`delay is ${delays} and length is ${delays.length}`);
         console.log('tests ok');
     }
 });
