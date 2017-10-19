@@ -24,7 +24,9 @@ const counter = function(object) {
             increment(num);
         }
     };
+    // alternatively, call increment until num > end ?
 
+    // this seems messy - i was expect setTimeout to call increment but that never worked
     setTimeout(function () {
         object.callback();
     }, object.delay); // every 100ms
