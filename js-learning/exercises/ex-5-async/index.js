@@ -17,9 +17,8 @@ const counter = function(object) {
     console.log(num);
 
     const increment = function() {
-        num += 1;
-        console.log(`num is incremented and is now ${num}.`);
-        object.onIncrement(num);
+        // num += 1;
+        object.onIncrement(num++);
         // call increment recursively as long as num is less than end
         if (num <= object.end) {
             increment(num);
