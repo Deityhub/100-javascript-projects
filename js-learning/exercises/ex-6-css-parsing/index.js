@@ -35,8 +35,8 @@ const parseCSS = function(path) {
         // because data isn't yet a css file?
         var cssdata = data.toString();
         // console.log(cssdata);
-        var result = css.parse(cssdata, { source: path });
-        console.log(result); // there we go
+        var parsedcss = css.parse(cssdata, { source: path });
+        // console.log(parsedcss); // there we go
         // now we have to sort thru these and find declaration types
         // and then of those which ones start with a dash
         // object, stylesheet obj, rules array, object inside that array with some number value
@@ -44,11 +44,18 @@ const parseCSS = function(path) {
         // object[9].declarations.object[n].property = starts with a dash "-webkit-text-size-adjust"
         // object[9].type = rule
         // object[9].selectors[0] = html
-        // the type=rule inside this object we want to reduce and get only the objects that are rules
+        // the type=rule inside this object we want to filter and get only the objects that are rules
         // then for the objs that are rules, find the declarations obj, property value
         // if the prop value starts with a dash
-        // then reduce on that and output an object with the selector
-        
+        // then filter on that and output an object with the selector
+
+        var allrules = parsedcss.stylesheet.rules;
+        var ruletypeonly = allrules.filter((type) => type == 'rule');
+        // why does this return an empty array?
+
+        // console.log( allrules );
+        console.log(ruletypeonly);
+
     });
 }
 
