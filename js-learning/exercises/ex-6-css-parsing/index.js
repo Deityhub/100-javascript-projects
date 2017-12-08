@@ -10,20 +10,27 @@ var css = require('css');
 const parseCSS = function(path, callback) {
     fs.readFile(path, function (err, data) {
 
-        // convert the data to a string so it can be read by css.parse
-        var cssdata = data.toString();
-
-        // parse the css
-        var parsedcss = css.parse(cssdata, { source: path });
-        // console.log(parsedcss);
-
+        
         // if there is an error reading the file
         if (err) {
             callback(err);
-            // return;
+            return;
             // here, i need to return an error if it's invalid
         } else {
             // console.log("all good");
+            // convert the data to a string so it can be read by css.parse
+            var cssdata = data.toString();
+    
+            // parse the css
+            var parsedcss = css.parse(cssdata, { source: path, silent: true });
+            if (parsedcss.stylesheet.parsingErrors.length > 0) {
+                console.log("this file is invalid css");
+                // console.log(parsedcss.stylesheet.parsingErrors);
+                callback(err);
+            }
+            
+            // if this returns an error, callback(err)
+            
 
             var allrules = parsedcss.stylesheet.rules;
             var ruletypeonly = allrules.filter((rule) => rule.type == 'rule');
@@ -44,16 +51,17 @@ const parseCSS = function(path, callback) {
                 return foo.indexOf(elem) == pos;
             });
 
-            console.log(selectors);
+            // console.log(selectors);
+            return selectors;
         }
 
 
-        // callback(undefined, parsedcss);
+        callback(undefined, selectors);
         // here, we have to pass the error as undefined, since the data is the second param, and callback takes two args
     });
 }
 
-parseCSS('/Users/eholladay/Documents/Projects/100-javascript-projects/js-learning/exercises/ex-6-css-parsing/invalid.css');
+// parseCSS('/Users/eholladay/Documents/Projects/100-javascript-projects/js-learning/exercises/ex-6-css-parsing/test.css');
 
 
 module.exports = parseCSS;
