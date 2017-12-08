@@ -9,43 +9,51 @@ var css = require('css');
 
 const parseCSS = function(path, callback) {
     fs.readFile(path, function (err, data) {
+
+        // convert the data to a string so it can be read by css.parse
+        var cssdata = data.toString();
+
+        // parse the css
+        var parsedcss = css.parse(cssdata, { source: path });
+        // console.log(parsedcss);
+
+        // if there is an error reading the file
         if (err) {
-            callback(err); // second param (the data) is automatically undefined if not passed
-            return; // don't need this for the callback
+            callback(err);
+            // return;
+            // here, i need to return an error if it's invalid
+        } else {
+            // console.log("all good");
+
+            var allrules = parsedcss.stylesheet.rules;
+            var ruletypeonly = allrules.filter((rule) => rule.type == 'rule');
+
+            var foo = [];
+
+            ruletypeonly.forEach((rule) => {
+                rule.declarations.forEach((declaration) => {
+                    if (declaration.property.charAt(0) == '-') {
+                        foo.push(rule.selectors);
+                    }
+                })
+                // console.log(foo);
+            });
+
+            // deduplicate
+            var selectors = foo.filter(function (elem, pos) {
+                return foo.indexOf(elem) == pos;
+            });
+
+            console.log(selectors);
         }
 
-        var cssdata = data.toString(); // because data isn't yet a css
-        var parsedcss = css.parse(cssdata, { source: path });
-        
-        var allrules = parsedcss.stylesheet.rules;
-        var ruletypeonly = allrules.filter((rule) => rule.type == 'rule');
-        // console.log(ruletypeonly);
 
-        var foo = [];
-
-        ruletypeonly.forEach((rule) => {
-            rule.declarations.forEach((declaration) => {
-                if (declaration.property.charAt(0) == '-') {
-                    foo.push(rule.selectors);
-                }
-            })
-            // console.log(foo);
-        });
-
-        // deduplicate
-        var selectors = foo.filter(function (elem, pos) {
-            return foo.indexOf(elem) == pos;
-        });
-
-        console.log(selectors);
-
-        // callback(undefined, whateverthedataarrayis);
+        // callback(undefined, parsedcss);
         // here, we have to pass the error as undefined, since the data is the second param, and callback takes two args
     });
-
 }
 
-parseCSS('/Users/eholladay/Documents/Projects/100-javascript-projects/js-learning/exercises/ex-6-css-parsing/test.css');
+parseCSS('/Users/eholladay/Documents/Projects/100-javascript-projects/js-learning/exercises/ex-6-css-parsing/invalid.css');
 
 
 module.exports = parseCSS;
