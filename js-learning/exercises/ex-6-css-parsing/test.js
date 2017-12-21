@@ -56,6 +56,7 @@ const expectedTests = 3;
 let doneTests = 0;
 
 reporter(path.join(__dirname, 'test.css'), (err, result) => {
+    console.log("test one");
     if (err) {
         throw err;
     }
@@ -73,17 +74,18 @@ reporter(path.join(__dirname, 'test.css'), (err, result) => {
             `Should have ${expectedMap[sel]} of ${sel}`
         );
     });
-
     doneTests++;
 });
 
 reporter('fakepath', (err) => {
     assert(err);
+    console.log("test two");
     doneTests++;
 });
 
 reporter(path.join(__dirname, 'invalid.css'), (err) => {
     assert(err);
+    console.log("test three");
     doneTests++;
 });
 

@@ -10,58 +10,93 @@ var css = require('css');
 const parseCSS = function(path, callback) {
     fs.readFile(path, function (err, data) {
 
-        
         // if there is an error reading the file
         if (err) {
             callback(err);
             return;
-            // here, i need to return an error if it's invalid
         } else {
-            // console.log("all good");
             // convert the data to a string so it can be read by css.parse
             var cssdata = data.toString();
     
             // parse the css
             var parsedcss = css.parse(cssdata, { source: path, silent: true });
+
+            // if invalid, parsedcss object has a parsingErrors obj in it, callback error
             if (parsedcss.stylesheet.parsingErrors.length > 0) {
-                console.log("this file is invalid css");
-                // console.log(parsedcss.stylesheet.parsingErrors);
+                const err = parsedcss.stylesheet.parsingErrors;
                 callback(err);
+                return;
             }
-            
-            // if this returns an error, callback(err)
-            
 
-            var allrules = parsedcss.stylesheet.rules;
-            var ruletypeonly = allrules.filter((rule) => rule.type == 'rule');
+            // get the rules object out
+            const allrules = parsedcss.stylesheet.rules;
+            // console.log(allrules);
+            // console.log(allrules[51]);
+            // console.log(allrules[51].declarations);
+            // console.log(allrules[53]);
+            // console.log(allrules[53].rules.declarations);
 
-            var foo = [];
+            // look (recursively?) in each rule
+            // because there's a `rules` object inside some of them
+            // to find the declarations object
 
-            ruletypeonly.forEach((rule) => {
-                rule.declarations.forEach((declaration) => {
+            // check if a prop is a vendor prop
+            const checkIfVendorProp = function(declarations) {
+                var hasVendorProp = false;
+                declarations.forEach((declaration) => {
+                    // don't need to actually go over every one, just need to get to a first prop w vendor prefix -- refactor
                     if (declaration.property.charAt(0) == '-') {
-                        foo.push(rule.selectors);
+                        // console.log("true" + declaration.property);
+                        hasVendorProp = true;
+                    } 
+                });
+                return hasVendorProp;
+            }
+
+            const selectorsWithVendorProps = [];
+            
+
+            const findDeclarations = function(rule) {
+                if (rule.type == "rule") {
+                    // is there a declarations object
+                    if (rule.declarations) {
+                        // if there is, check it for vendor prefixes
+                        var hasVendorProps = checkIfVendorProp(rule.declarations); // will give me back true or false
+
+                        if (hasVendorProps == true) {
+                            selectorsWithVendorProps.push(rule.selectors);
+                        }
                     }
-                })
-                // console.log(foo);
-            });
+                } else if (rule.type == "media") {
+                    // console.log("media")
+                    // do somnething else
+                }
+            }
+                // see if there is a declarations object
+                // if not, see if there is a rules object
+                // and then see if there is a declarations object
+                
+                const types = {};
 
-            // deduplicate
-            var selectors = foo.filter(function (elem, pos) {
-                return foo.indexOf(elem) == pos;
-            });
+                
+                // inside each rule in allrules
+                allrules.forEach((rule) => {
+                    // types[rule.type] = "true";
+                    findDeclarations(rule);
+                });
+                // console.log(types);
 
-            // console.log(selectors);
-            return selectors;
+            console.log(selectorsWithVendorProps);
+
+            // and in it check to see if is a vendor prefix
+            // and get the selectors object (back up a level)
+            
+            // callback(undefined, selectors);
         }
-
-
-        callback(undefined, selectors);
-        // here, we have to pass the error as undefined, since the data is the second param, and callback takes two args
     });
 }
 
-// parseCSS('/Users/eholladay/Documents/Projects/100-javascript-projects/js-learning/exercises/ex-6-css-parsing/test.css');
+parseCSS('/Users/eholladay/Documents/Projects/100-javascript-projects/js-learning/exercises/ex-6-css-parsing/test.css');
 
 
 module.exports = parseCSS;
