@@ -62,13 +62,21 @@ const parseCSS = function(path, callback) {
                     if (rule.declarations) {
                         // if there is, check it for vendor prefixes
                         var hasVendorProps = checkIfVendorProp(rule.declarations); // will give me back true or false
+                        // console.log(hasVendorProps)
                         if (hasVendorProps == true) {
+
+                            // and get the selectors object (back up a level)
                             selectorsWithVendorProps = selectorsWithVendorProps.concat(rule.selectors);
                         }
                     }
                 } else if (rule.type == "media") {
-                    console.log(rule);
-                    // do somnething else
+                    
+                        // here - if there are 2 selectors inside a mediaquery, there's 2 rule objects
+                        // console.log("more than one rules");
+                        rule.rules.forEach((rule) => {
+                            findDeclarations(rule);
+                        })
+
                 }
             }
                 // see if there is a declarations object
@@ -87,15 +95,13 @@ const parseCSS = function(path, callback) {
 
             console.log(selectorsWithVendorProps);
 
-            // and in it check to see if is a vendor prefix
-            // and get the selectors object (back up a level)
             
-            // callback(undefined, selectors);
+            callback(undefined, selectorsWithVendorProps);
         }
     });
 }
 
-parseCSS('/Users/eholladay/Documents/Projects/100-javascript-projects/js-learning/exercises/ex-6-css-parsing/test.css');
+// parseCSS('/Users/eholladay/Documents/Projects/100-javascript-projects/js-learning/exercises/ex-6-css-parsing/test.css');
 
 
 module.exports = parseCSS;
