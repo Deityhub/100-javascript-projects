@@ -50,11 +50,11 @@ const parseCSS = function(path, callback) {
                         hasVendorProp = true;
                     } 
                 });
+                // console.log(hasVendorProp) // returns true or false for each one
                 return hasVendorProp;
             }
 
-            const selectorsWithVendorProps = [];
-            
+            var selectorsWithVendorProps = [];
 
             const findDeclarations = function(rule) {
                 if (rule.type == "rule") {
@@ -64,7 +64,7 @@ const parseCSS = function(path, callback) {
                         var hasVendorProps = checkIfVendorProp(rule.declarations); // will give me back true or false
 
                         if (hasVendorProps == true) {
-                            selectorsWithVendorProps.push(rule.selectors);
+                            selectorsWithVendorProps = selectorsWithVendorProps.concat(rule.selectors);
                         }
                     }
                 } else if (rule.type == "media") {
