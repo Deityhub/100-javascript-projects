@@ -62,13 +62,12 @@ const parseCSS = function(path, callback) {
                     if (rule.declarations) {
                         // if there is, check it for vendor prefixes
                         var hasVendorProps = checkIfVendorProp(rule.declarations); // will give me back true or false
-
                         if (hasVendorProps == true) {
                             selectorsWithVendorProps = selectorsWithVendorProps.concat(rule.selectors);
                         }
                     }
                 } else if (rule.type == "media") {
-                    // console.log("media")
+                    console.log(rule);
                     // do somnething else
                 }
             }
