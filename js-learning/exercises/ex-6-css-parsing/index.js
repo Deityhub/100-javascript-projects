@@ -1,12 +1,6 @@
 var fs = require('fs');
 var css = require('css');
 
-// Your function should take as its arguments:
-// - The full path to a CSS file.Use the Node File System API-- specifically, the`readFile` method-- to read the file.
-// - A callback to call when processing is complete.The callback should receive two arguments: an error object, if any errors were encountered; and an array of rules that use vendor prefixes.
-// Use the rework/css CSS parser to generate an object that represents the contents of the CSS file, which you can then traverse to identify places where vendor prefixes are used.
-
-
 const parseCSS = function(path, callback) {
     fs.readFile(path, function (err, data) {
 
@@ -30,15 +24,6 @@ const parseCSS = function(path, callback) {
 
             // get the rules object out
             const allrules = parsedcss.stylesheet.rules;
-            // console.log(allrules);
-            // console.log(allrules[51]);
-            // console.log(allrules[51].declarations);
-            // console.log(allrules[53]);
-            // console.log(allrules[53].rules.declarations);
-
-            // look (recursively?) in each rule
-            // because there's a `rules` object inside some of them
-            // to find the declarations object
 
             // check if a prop is a vendor prop
             const checkIfVendorProp = function(declarations) {
@@ -70,23 +55,23 @@ const parseCSS = function(path, callback) {
                         }
                     }
                 } else if (rule.type == "media") {
-                    
                         // here - if there are 2 selectors inside a mediaquery, there's 2 rule objects
                         // console.log("more than one rules");
                         rule.rules.forEach((rule) => {
+                            // look recursively for declarations
                             findDeclarations(rule);
                         })
 
                 }
+                // else here are the comment types
+                // could throw an error here?
             }
-                // see if there is a declarations object
-                // if not, see if there is a rules object
-                // and then see if there is a declarations object
                 
                 const types = {};
 
                 
                 // inside each rule in allrules
+                // because there's a `rules` object inside some of them (medias), comments have no rules obj
                 allrules.forEach((rule) => {
                     // types[rule.type] = "true";
                     findDeclarations(rule);
